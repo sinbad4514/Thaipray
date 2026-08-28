@@ -2,6 +2,19 @@ const fs = require('fs');
 const path = require('path');
 
 const prayers = [
+  // Sacred Buddha Images & National Shrines
+  'emerald-buddha',
+  'city-pillar-shrine',
+  'luangpho-sothon',
+  'phra-buddha-chinnarat',
+  'luangpho-thanjai',
+  'luangpho-guay',
+  'luangpho-ngern',
+  'luangpho-to-anan',
+  'luangpho-banlaem',
+  'luangpu-thuat',
+  'upakut-luck',
+
   // Deities & Sacred Figures
   'thao-wessuwan',
   'phra-phrom',
@@ -15,9 +28,6 @@ const prayers = [
   'trimurti',
   'shiva',
   'kali',
-  'luangpu-thuat',
-  'luangpho-sothon',
-  'upakut-luck',
   'love-lakshmi',
 
   // Core Prayers & Routines
