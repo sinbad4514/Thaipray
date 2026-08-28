@@ -312,3 +312,99 @@ function initMeditationTimer() {
     });
   });
 }
+
+// 7. Share Functions (Facebook, LINE, X, Web Share API, Copy Link)
+function showToast(msg) {
+  let toast = document.getElementById('share-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'share-toast';
+    toast.className = 'toast-msg';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `<span>✓</span> <span>${msg}</span>`;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2500);
+}
+
+function initShareButtons() {
+  const currentUrl = window.location.href;
+  const currentTitle = document.title || 'ThaiPray | รวมบทสวดมนต์และคาถาบูชา';
+
+  // Facebook Share
+  document.querySelectorAll('.btn-share-fb').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const fbUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`;
+      window.open(fbUrl, '_blank', 'width=600,height=500');
+    });
+  });
+
+  // LINE Share
+  document.querySelectorAll('.btn-share-line').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const lineUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(currentTitle)}`;
+      window.open(lineUrl, '_blank', 'width=600,height=500');
+    });
+  });
+
+  // X (Twitter) Share
+  document.querySelectorAll('.btn-share-x').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const xUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(currentTitle)}`;
+      window.open(xUrl, '_blank', 'width=600,height=500');
+    });
+  });
+
+  // Copy Link to Clipboard
+  document.querySelectorAll('.btn-share-copy').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(currentUrl).then(() => {
+          showToast('คัดลอกลิงก์บทสวดแล้ว ส่งต่อบุญได้ทันที');
+        }).catch(() => {
+          fallbackCopyText(currentUrl);
+        });
+      } else {
+        fallbackCopyText(currentUrl);
+      }
+    });
+  });
+
+  // Native Web Share API for Mobile
+  document.querySelectorAll('.btn-share-native').forEach(btn => {
+    if (navigator.share) {
+      btn.style.display = 'inline-flex';
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        navigator.share({
+          title: currentTitle,
+          text: `ขอเชิญสวดมนต์บทนี้ด้วยกันครับ: ${currentTitle}`,
+          url: currentUrl
+        }).catch(() => {});
+      });
+    } else {
+      btn.style.display = 'none';
+    }
+  });
+
+  function fallbackCopyText(text) {
+    const input = document.createElement('input');
+    input.value = text;
+    document.body.appendChild(input);
+    input.select();
+    document.execCommand('copy');
+    document.body.removeChild(input);
+    showToast('คัดลอกลิงก์บทสวดแล้ว ส่งต่อบุญได้ทันที');
+  }
+}
+
+// Global initialization
+document.addEventListener('DOMContentLoaded', () => {
+  initShareButtons();
+});

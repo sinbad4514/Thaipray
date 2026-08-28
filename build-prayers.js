@@ -752,6 +752,19 @@ function generatePrayerHtml(p) {
     <!-- Worship Tips Box -->
     ${tipsHtml}
 
+    <!-- Share Section (ส่งต่อบุญ) -->
+    <section class="share-section">
+      <div class="share-title">🕊️ ส่งต่อบทสวดมนต์เป็นธรรมทาน</div>
+      <div class="share-subtitle">การให้ธรรมะเป็นทาน ชนะการให้ทั้งปวง ร่วมแชร์บทสวดและเคล็ดลับการบูชาเพื่อเป็นสิริมงคล</div>
+      <div class="share-buttons">
+        <button class="btn-share btn-share-line">💬 แชร์ทาง LINE</button>
+        <button class="btn-share btn-share-fb">📘 แชร์ Facebook</button>
+        <button class="btn-share btn-share-x">𝕏 โพสต์ X</button>
+        <button class="btn-share btn-share-copy">📋 คัดลอกลิงก์</button>
+        <button class="btn-share btn-share-native" style="display: none;">📤 ส่งต่อ</button>
+      </div>
+    </section>
+
     <!-- History & Benefits -->
     <section class="article-section">
       <h2>ประวัติความเป็นมาและอานิสงส์</h2>
