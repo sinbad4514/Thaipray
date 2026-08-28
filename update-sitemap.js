@@ -3,6 +3,7 @@ const path = require('path');
 
 const prayers = [
   // Sacred Buddha Images & National Shrines
+  'luangpho-klak-fin',
   'phrachao-kao-tue',
   'emerald-buddha',
   'city-pillar-shrine',
