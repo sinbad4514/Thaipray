@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ThaiPray | รวมบทสวดมนต์ คาถายอดนิยม คาถาบูชาเทพเจ้า และจับเวลาสมาธิ</title>
-  <meta name="description" content="เว็บสวดมนต์สำหรับคนไทย รวมบทสวดมนต์ก่อนนอน คาถาเงินล้าน ชินบัญชร คาถาบูชาท้าวเวสสุวรรณ พระพรหม พระพิฆเนศ พระแม่ลักษมี พญานาค ไอ้ไข่ เซียนแปะโรงสี พระราหู เจ้าแม่กวนอิม พร้อมตัวนับรอบสวด">
-  <meta name="keywords" content="บทสวดมนต์, คาถาบูชาท้าวเวสสุวรรณ, คาถาบูชาพระพรหม, คาถาบูชาพญานาค, คาถาไอ้ไข่, เซียนแปะโรงสี, คาถาเงินล้าน, คาถาชินบัญชร, บทสวดมนต์ก่อนนอน">
+  <title>ThaiPray | รวมบทสวดมนต์ คาถายอดนิยม คาถาบูชาเทพเจ้า และจับเวลาสมาธิ 432Hz</title>
+  <meta name="description" content="เว็บสวดมนต์สำหรับคนไทย รวมบทสวดมนต์ก่อนนอน 1-8 คาถาเงินล้าน ชินบัญชร ท้าวเวสสุวรรณ พระพรหม พญานาค ไอ้ไข่ เซียนแปะโรงสี พระราหู เจ้าแม่กวนอิม พร้อมแท็บเลือกหมวดและเสียงระฆังธิเบต">
+  <meta name="keywords" content="บทสวดมนต์, บทสวดมนต์ก่อนนอน, คาถาบูชาท้าวเวสสุวรรณ, คาถาบูชาพระพรหม, คาถาบูชาพญานาค, คาถาไอ้ไข่, เซียนแปะโรงสี, คาถาเงินล้าน, คาถาชินบัญชร">
   <link rel="canonical" href="https://thaipray.com/">
   
   <meta property="og:type" content="website">
@@ -32,7 +32,7 @@
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- [ HEADER ] -> Logo + สลับโหมดกลางคืน + ปรับขนาดฟอนต์ -->
   <header class="header">
     <div class="container nav-container">
       <a href="index.html" class="logo">
@@ -42,13 +42,17 @@
       <ul class="nav-menu">
         <li><a href="index.html" class="nav-link active">หน้าแรก</a></li>
         <li><a href="prayer-sequence.html" class="nav-link">📖 ลำดับการสวด</a></li>
-        <li><a href="#deities-section" class="nav-link" style="color: var(--primary-gold); font-weight: 600;">✨ บูชาเทพเจ้า</a></li>
-        <li><a href="#popular-prayers" class="nav-link">บทสวดมนต์</a></li>
-        <li><a href="#birthday-prayers" class="nav-link">ประจำวันเกิด</a></li>
-        <li><a href="#meditation-section" class="nav-link">จับเวลาสมาธิ</a></li>
+        <li><a href="#meditation-section" class="nav-link">⏱️ นั่งสมาธิ</a></li>
       </ul>
       <div class="nav-actions">
-        <button id="theme-toggle" class="btn-icon" aria-label="สลับโหมดกลางวัน/กลางคืน">🌙</button>
+        <!-- Font Resizer in Header -->
+        <div class="font-resizer" style="margin-right: 8px;">
+          <button id="font-decrease" title="ลดขนาดฟอนต์">ก-</button>
+          <button id="font-reset" title="ขนาดมาตรฐาน">ปกติ</button>
+          <button id="font-increase" title="เพิ่มขนาดฟอนต์">ก+</button>
+        </div>
+        <!-- Dark Mode Toggle -->
+        <button id="theme-toggle" class="btn-icon" aria-label="สลับโหมดกลางวัน/กลางคืน" title="สลับโหมดมืด/สว่าง">🌙</button>
       </div>
     </div>
   </header>
@@ -56,7 +60,7 @@
   <!-- Main Content -->
   <main class="container">
     
-    <!-- Hero Section -->
+    <!-- 1. [ HERO & GREETING ] -->
     <section class="hero-section">
       <h1>พื้นที่สงบใจ รวมบทสวดมนต์ & คาถาบูชาเทพเจ้า</h1>
       <p class="hero-subtitle">อ่านบทสวดมนต์ง่าย สบายตา ปรับขนาดตัวอักษรได้ พร้อมตัวช่วยนับรอบและเสียงระฆังธิเบต 432Hz</p>
@@ -64,34 +68,79 @@
       <!-- Live Search Box -->
       <div class="search-box">
         <span class="search-icon">🔍</span>
-        <input type="text" id="prayer-search" class="search-input" placeholder="ค้นหาบทสวดหรือเทพเจ้า เช่น ท้าวเวสสุวรรณ, พระพรหม, พญานาค, ไอ้ไข่, เงินล้าน, ก่อนนอน...">
+        <input type="text" id="prayer-search" class="search-input" placeholder="พิมพ์ค้นหาบทสวดหรือเทพเจ้า เช่น ก่อนนอน, ท้าวเวสสุวรรณ, เงินล้าน, ขอขมากรรม, พญานาค...">
       </div>
 
-      <!-- Quick Daily Routines Bar -->
+      <!-- 🌟 "แถบชุดสวดด่วนประจำวัน" (Quick Daily Routines) -->
       <div class="quick-tools">
         <a href="prayers/bedtime-complete.html" class="tool-chip" style="background: var(--primary-gold-light); border-color: var(--primary-gold); font-weight: 600;">🌙 สวดมนต์ก่อนนอน 1-8</a>
         <a href="prayers/morning-routine.html" class="tool-chip">🌅 สวดมนต์ยามเช้า</a>
+        <a href="prayers/uposatha-routine.html" class="tool-chip">🌕 สวดมนต์วันพระ</a>
         <a href="prayers/karma-forgiveness.html" class="tool-chip">🔓 ขอขมากรรม</a>
         <a href="prayers/thao-wessuwan.html" class="tool-chip">👹 ท้าวเวสสุวรรณ</a>
-        <a href="prayers/phra-phrom.html" class="tool-chip">✨ พระพรหม 4 หน้า</a>
         <a href="prayers/katha-ngoen-lan.html" class="tool-chip">💰 คาถาเงินล้าน</a>
         <a href="#meditation-section" class="tool-chip">⏱️ จับเวลาสมาธิ</a>
       </div>
     </section>
 
-    <!-- Section 1: เทพเจ้า & สิ่งศักดิ์สิทธิ์ยอดนิยมในไทย -->
-    <section id="deities-section" style="margin-top: 1rem;">
-      <div class="section-header">
-        <div>
-          <span class="card-tag" style="background: var(--primary-gold-light); padding: 4px 10px; border-radius: var(--radius-full);">ศรัทธามหาลาภ & มหาอำนาจ</span>
-          <h2>คาถาบูชาเทพเจ้า & สิ่งศักดิ์สิทธิ์ยอดนิยม</h2>
-        </div>
+    <!-- 2. [ CATEGORY TABS (แท็บเลือกง่าย) ] -->
+    <section style="margin: 1.5rem 0 2rem 0;">
+      <div class="category-tabs" style="display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center;">
+        <button class="btn-pill tab-btn active" data-category="all">✨ ทั้งหมด</button>
+        <button class="btn-pill tab-btn" data-category="bedtime">🌙 ก่อนนอน</button>
+        <button class="btn-pill tab-btn" data-category="wealth">💰 การเงิน โชคลาภ</button>
+        <button class="btn-pill tab-btn" data-category="protection">🛡️ คุ้มครอง แคล้วคลาด</button>
+        <button class="btn-pill tab-btn" data-category="deities">🔱 องค์เทพเจ้า</button>
+        <button class="btn-pill tab-btn" data-category="birthday">🎂 ประจำวันเกิด</button>
       </div>
+    </section>
 
+    <!-- 3. [ GRID บทสวดยอดนิยม & องค์เทพ (จัดกลุ่มเป็นสัดส่วนชัดเจน) ] -->
+    <section id="popular-prayers">
+      
       <div class="grid-cards">
         
+        <!-- บทสวดมนต์ก่อนนอน 1-8 -->
+        <a href="prayers/bedtime-complete.html" class="card" data-cat="bedtime" style="border: 2px solid var(--primary-gold);">
+          <div>
+            <span class="card-tag">⭐ สวดตามลำดับ 1-8</span>
+            <h3 class="card-title">บทสวดมนต์ก่อนนอน (ฉบับสมบูรณ์)</h3>
+            <p class="card-desc">บูชาพระ › นะโม › ไตรสรณคมน์ › ศีล 5 › อิติปิโส › พาหุง 8 บทเต็ม › ชินบัญชร 15 บทเต็ม › แผ่เมตตา</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 10-15 นาที</span>
+            <span>✨ ครบจบในหน้าเดียว</span>
+          </div>
+        </a>
+
+        <!-- คาถาเงินล้าน -->
+        <a href="prayers/katha-ngoen-lan.html" class="card" data-cat="wealth">
+          <div>
+            <span class="card-tag">การเงิน & โชคลาภ</span>
+            <h3 class="card-title">คาถาเงินล้าน (หลวงพ่อฤาษีลิงดำ)</h3>
+            <p class="card-desc">สัมปะจิตฉามิ นาสังสิโม... สวดเสริมสิริมงคล คล่องตัวทางการเงิน ปลดหนี้สิน พร้อมตัวนับ 9/30/108 จบ</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 3-5 นาที</span>
+            <span>💰 เสริมโชคลาภ</span>
+          </div>
+        </a>
+
+        <!-- พระคาถาชินบัญชร -->
+        <a href="prayers/chinnabanchon.html" class="card" data-cat="protection">
+          <div>
+            <span class="card-tag">แคล้วคลาด & คุ้มครอง</span>
+            <h3 class="card-title">พระคาถาชินบัญชร (สมเด็จโต 15 บทเต็ม)</h3>
+            <p class="card-desc">ชะยาสะนากะตา พุทธา... ยอดพระคาถาศักดิ์สิทธิ์ เสริมเกราะคุ้มครอง ป้องกันภยันตรายทั้งปวง</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 5-7 นาที</span>
+            <span>🛡️ เกราะคุ้มครอง</span>
+          </div>
+        </a>
+
         <!-- ท้าวเวสสุวรรณ -->
-        <a href="prayers/thao-wessuwan.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/thao-wessuwan.html" class="card" data-cat="deities wealth protection" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">มหาลาภ & กันคุณไสย</span>
             <h3 class="card-title">คาถาบูชาท้าวเวสสุวรรณ (วัดจุฬามณี)</h3>
@@ -104,7 +153,7 @@
         </a>
 
         <!-- ท้าวมหาพรหม -->
-        <a href="prayers/phra-phrom.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/phra-phrom.html" class="card" data-cat="deities wealth" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">สำเร็จสมหวัง 4 ทิศ</span>
             <h3 class="card-title">คาถาบูชาท้าวมหาพรหม (เอราวัณ)</h3>
@@ -117,7 +166,7 @@
         </a>
 
         <!-- พญานาคราช ปู่ศรีสุทโธ -->
-        <a href="prayers/naga-srisuttho.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/naga-srisuttho.html" class="card" data-cat="deities wealth" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">สมบัติใต้บาดาล & เสี่ยงโชค</span>
             <h3 class="card-title">คาถาบูชาพญานาค (ปู่ศรีสุทโธ คำชะโนด)</h3>
@@ -130,7 +179,7 @@
         </a>
 
         <!-- ไอ้ไข่ วัดเจดีย์ -->
-        <a href="prayers/ai-khai.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/ai-khai.html" class="card" data-cat="deities wealth" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">ขอได้ไหว้รับ & ค้าขาย</span>
             <h3 class="card-title">คาถาบูชาไอ้ไข่ เด็กวัดเจดีย์</h3>
@@ -143,7 +192,7 @@
         </a>
 
         <!-- เซียนแปะโรงสี -->
-        <a href="prayers/xian-pae.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/xian-pae.html" class="card" data-cat="deities wealth" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">ยันต์ฟ้าประทานพร & ปลดหนี้</span>
             <h3 class="card-title">คาถาบูชาเซียนแปะโรงสี (โง้วกิมโคย)</h3>
@@ -156,7 +205,7 @@
         </a>
 
         <!-- เจ้าแม่กวนอิม -->
-        <a href="prayers/guanyin.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/guanyin.html" class="card" data-cat="deities protection" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">มหากรุณา & ปัดเป่าทุกข์ภัย</span>
             <h3 class="card-title">บทสวดมนต์เจ้าแม่กวนอิม (มหากรุณาธารณี)</h3>
@@ -169,11 +218,11 @@
         </a>
 
         <!-- พระพิฆเนศ -->
-        <a href="prayers/ganesha.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/ganesha.html" class="card" data-cat="deities wealth" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">สำเร็จ & ขจัดอุปสรรค</span>
             <h3 class="card-title">คาถาบูชาพระพิฆเนศวร</h3>
-            <p class="card-desc">โอม ศรี คเณศายะ นะมะฮา... มหาเทพแห่งความสำเร็จ สติปัญญา ศิลปวิทยาการ</p>
+            <p class="card-desc">โอม ศรี คเณศายะ นะมะฮา... มหาเทพแห่งความสำเร็จ สติปัญญา ศิลปวิทยาการ ค้าขายคล่อง</p>
           </div>
           <div class="card-meta">
             <span>⏱️ 2 นาที</span>
@@ -182,7 +231,7 @@
         </a>
 
         <!-- พระแม่ลักษมี -->
-        <a href="prayers/lakshmi.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/lakshmi.html" class="card" data-cat="deities wealth" style="border-top: 3px solid var(--primary-gold);">
           <div>
             <span class="card-tag">ความรัก & ความมั่งคั่ง</span>
             <h3 class="card-title">คาถาบูชาพระแม่ลักษมี</h3>
@@ -194,8 +243,86 @@
           </div>
         </a>
 
+        <!-- ขอขมากรรม & ถอนคำสาบาน -->
+        <a href="prayers/karma-forgiveness.html" class="card" data-cat="bedtime protection">
+          <div>
+            <span class="card-tag">ปลดล็อคชีวิต & สบายใจ</span>
+            <h3 class="card-title">บทสวดขอขมากรรม & ถอนคำสาบาน</h3>
+            <p class="card-desc">ขอขมากรรม อโหสิกรรมต่อเจ้ากรรมนายเวร และถอนคำบนบานศาลกล่าว แก้ชีวิตติดขัด</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 3 นาที</span>
+            <span>🔓 ปลดล็อควิบากกรรม</span>
+          </div>
+        </a>
+
+        <!-- บทสวดแผ่ส่วนบุญส่วนกุศล -->
+        <a href="prayers/share-merit.html" class="card" data-cat="bedtime">
+          <div>
+            <span class="card-tag">บทปิดท้าย & อุทิศบุญ</span>
+            <h3 class="card-title">บทสวดแผ่ส่วนบุญส่วนกุศล</h3>
+            <p class="card-desc">อิทัง เม มาตาปิตูนัง โหตุ... อุทิศบุญให้พ่อแม่ ญาติ ครูอาจารย์ เทวดา เปรต และเจ้ากรรมนายเวร</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 2 นาที</span>
+            <span>🕊️ สุขถ้วนหน้า</span>
+          </div>
+        </a>
+
+        <!-- คาถาพระมหาจักรพรรดิ -->
+        <a href="prayers/mahachakrapat.html" class="card" data-cat="bedtime protection">
+          <div>
+            <span class="card-tag">ปรับภพภูมิ & หนุนดวง</span>
+            <h3 class="card-title">คาถาพระมหาจักรพรรดิ (หลวงปู่ดู่)</h3>
+            <p class="card-desc">นะโมพุทธายะ พระพุทธะ ไตรรัตนะญาณ... บทสวดแผ่เมตตาปรับภพภูมิและรวมบุญบารมี</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 3-10 นาที</span>
+            <span>🌟 รวมบุญบารมี</span>
+          </div>
+        </a>
+
+        <!-- ธัมมจักกัปปวัตตนสูตร เต็ม -->
+        <a href="prayers/dhammacakka.html" class="card" data-cat="protection">
+          <div>
+            <span class="card-tag">ปฐมเทศนา ฉบับเต็ม</span>
+            <h3 class="card-title">ธัมมจักกัปปวัตตนสูตร (ฉบับเต็ม)</h3>
+            <p class="card-desc">เอวัมเม สุตัง... บทสวดพระปฐมเทศนา หมุนกงล้อธรรมจักร พลิกชีวิต เสริมพลังมงคล เทวดาคุ้มครอง</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 15-20 นาที</span>
+            <span>☸️ มงคลสูงสุด</span>
+          </div>
+        </a>
+
+        <!-- ธัมมจักกัปปวัตตนสูตร ย่อ -->
+        <a href="prayers/dhammacakka-short.html" class="card" data-cat="bedtime protection">
+          <div>
+            <span class="card-tag">ปฐมเทศนา ฉบับย่อ</span>
+            <h3 class="card-title">ธัมมจักกัปปวัตตนสูตร (ฉบับย่อ 3-5 นาที)</h3>
+            <p class="card-desc">คัดเฉพาะหัวใจมัชฌิมาปฏิปทาและอริยสัจ 4 สวดง่าย กระชับ เหมาะสำหรับสวดทุกวัน</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 3-5 นาที</span>
+            <span>✨ สวดง่ายประจำวัน</span>
+          </div>
+        </a>
+
+        <!-- พาหุงมหากา -->
+        <a href="prayers/bahum-mahaka.html" class="card" data-cat="protection">
+          <div>
+            <span class="card-tag">ชนะอุปสรรค & มีชัยชนะ</span>
+            <h3 class="card-title">พุทธชัยมงคลคาถา (พาหุงมหากา)</h3>
+            <p class="card-desc">พาหุง สะหัสสะมะภินิมมิตะ... สรรเสริญชัยชนะ 8 ประการ ชนะศัตรู คดีความ อุปสรรค</p>
+          </div>
+          <div class="card-meta">
+            <span>⏱️ 4 นาที</span>
+            <span>🏆 มีชัยชนะ</span>
+          </div>
+        </a>
+
         <!-- พระราหู -->
-        <a href="prayers/rahu.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/rahu.html" class="card" data-cat="deities protection">
           <div>
             <span class="card-tag">แก้ชง & พลิกดวงตก</span>
             <h3 class="card-title">คาถาบูชาพระราหู (สุริย-จันทบัพพา)</h3>
@@ -208,7 +335,7 @@
         </a>
 
         <!-- พระตรีมูรติ -->
-        <a href="prayers/trimurti.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/trimurti.html" class="card" data-cat="deities wealth">
           <div>
             <span class="card-tag">3 มหาเทพ & ความรัก</span>
             <h3 class="card-title">คาถาบูชาพระตรีมูรติ</h3>
@@ -220,34 +347,8 @@
           </div>
         </a>
 
-        <!-- พระศิวะ -->
-        <a href="prayers/shiva.html" class="card" style="border-top: 3px solid var(--primary-gold);">
-          <div>
-            <span class="card-tag">มหาอำนาจ & ล้างอาถรรพ์</span>
-            <h3 class="card-title">คาถาบูชาพระศิวะมหาเทพ</h3>
-            <p class="card-desc">โอม นะมัส ศิวายะ... ขจัดสิ่งชั่วร้าย ล้างอาถรรพ์ และประทานพลังอำนาจ</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 2 นาที</span>
-            <span>🔱 มหาเดวะ</span>
-          </div>
-        </a>
-
-        <!-- พระแม่กาลี -->
-        <a href="prayers/kali.html" class="card" style="border-top: 3px solid var(--primary-gold);">
-          <div>
-            <span class="card-tag">ชนะศัตรู & ปราบมาร</span>
-            <h3 class="card-title">คาถาบูชาพระแม่กาลี</h3>
-            <p class="card-desc">โอม ศรี มหา กาลิกาไย นะมะห์... ชนะคู่แข่ง ชนะศัตรู และทำลายอุปสรรคทั้งปวง</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 2 นาที</span>
-            <span>⚔️ ชนะคู่แข่ง</span>
-          </div>
-        </a>
-
         <!-- หลวงปู่ทวด -->
-        <a href="prayers/luangpu-thuat.html" class="card" style="border-top: 3px solid var(--primary-gold);">
+        <a href="prayers/luangpu-thuat.html" class="card" data-cat="protection">
           <div>
             <span class="card-tag">แคล้วคลาดนิรันตราย</span>
             <h3 class="card-title">คาถาบูชาหลวงปู่ทวด (วัดช้างให้)</h3>
@@ -259,143 +360,8 @@
           </div>
         </a>
 
-        <!-- หลวงพ่อโสธร -->
-        <a href="prayers/luangpho-sothon.html" class="card" style="border-top: 3px solid var(--primary-gold);">
-          <div>
-            <span class="card-tag">สำเร็จสมปรารถนา</span>
-            <h3 class="card-title">คาถาบูชาหลวงพ่อโสธร</h3>
-            <p class="card-desc">พระพุทธรูปคู่บ้านคู่เมืองแปดริ้ว เมตตามหานิยม การงาน สุขภาพ</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 2 นาที</span>
-            <span>🙏 สมปรารถนา</span>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- Section 2: บทสวดมนต์หลัก & ชุดสวดมาตรฐาน -->
-    <section id="popular-prayers" style="margin-top: 3rem;">
-      <div class="section-header">
-        <div>
-          <span class="card-tag">ชุดสวดมนต์หลัก</span>
-          <h2>พระคาถาและบทสวดมนต์เพื่อความสงบ</h2>
-        </div>
-      </div>
-
-      <div class="grid-cards">
-        
-        <a href="prayers/bedtime-complete.html" class="card" style="border: 2px solid var(--primary-gold);">
-          <div>
-            <span class="card-tag">⭐ สวดตามลำดับ 1-8</span>
-            <h3 class="card-title">บทสวดมนต์ก่อนนอน (ฉบับสมบูรณ์)</h3>
-            <p class="card-desc">บูชาพระ › นะโม › ไตรสรณคมน์ › ศีล 5 › อิติปิโส › พาหุง 8 บทเต็ม › ชินบัญชร 15 บทเต็ม › แผ่เมตตา</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 10-15 นาที</span>
-            <span>✨ ครบจบในหน้าเดียว</span>
-          </div>
-        </a>
-
-        <a href="prayers/katha-ngoen-lan.html" class="card">
-          <div>
-            <span class="card-tag">การเงิน & โชคลาภ</span>
-            <h3 class="card-title">คาถาเงินล้าน (หลวงพ่อฤาษีลิงดำ)</h3>
-            <p class="card-desc">สวดเสริมสิริมงคล คล่องตัวทางการเงิน ปลดหนี้สิน พร้อมตัวนับ 9 จบ, 30 จบ, 108 จบ</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 3-5 นาที</span>
-            <span>💰 เสริมโชคลาภ</span>
-          </div>
-        </a>
-
-        <a href="prayers/chinnabanchon.html" class="card">
-          <div>
-            <span class="card-tag">แคล้วคลาด & คุ้มครอง</span>
-            <h3 class="card-title">พระคาถาชินบัญชร (สมเด็จโต 15 บทเต็ม)</h3>
-            <p class="card-desc">ยอดพระคาถาศักดิ์สิทธิ์ เสริมเกราะคุ้มครอง ป้องกันภยันตราย มีคำอ่านแบ่งวรรคถูกต้อง</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 5-7 นาที</span>
-            <span>🛡️ เกราะคุ้มครอง</span>
-          </div>
-        </a>
-
-        <a href="prayers/mahachakrapat.html" class="card">
-          <div>
-            <span class="card-tag">ปรับภพภูมิ & หนุนดวง</span>
-            <h3 class="card-title">คาถาพระมหาจักรพรรดิ (หลวงปู่ดู่)</h3>
-            <p class="card-desc">บทสวดแผ่เมตตาปรับภพภูมิและรวมบุญบารมี สวดเวลา 20.30 น. หรือตามเวลาสะดวก</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 3-10 นาที</span>
-            <span>🌟 รวมบุญบารมี</span>
-          </div>
-        </a>
-
-        <a href="prayers/karma-forgiveness.html" class="card">
-          <div>
-            <span class="card-tag">ปลดล็อคชีวิต & สบายใจ</span>
-            <h3 class="card-title">บทสวดขอขมากรรม & ถอนคำสาบาน</h3>
-            <p class="card-desc">ขอขมากรรม อโหสิกรรมต่อเจ้ากรรมนายเวร และถอนคำบนบานศาลกล่าว แก้ชีวิตติดขัด</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 3 นาที</span>
-            <span>🔓 ปลดล็อควิบากกรรม</span>
-          </div>
-        </a>
-
-        <a href="prayers/share-merit.html" class="card">
-          <div>
-            <span class="card-tag">บทปิดท้าย & อุทิศบุญ</span>
-            <h3 class="card-title">บทสวดแผ่ส่วนบุญส่วนกุศล</h3>
-            <p class="card-desc">อิทัง เม มาตาปิตูนัง โหตุ... อุทิศบุญให้พ่อแม่ ญาติ ครูอาจารย์ เทวดา เปรต และเจ้ากรรมนายเวร</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 2 นาที</span>
-            <span>🕊️ สุขถ้วนหน้า</span>
-          </div>
-        </a>
-
-        <a href="prayers/dhammacakka.html" class="card">
-          <div>
-            <span class="card-tag">ปฐมเทศนา ฉบับเต็ม</span>
-            <h3 class="card-title">ธัมมจักกัปปวัตตนสูตร (ฉบับเต็ม)</h3>
-            <p class="card-desc">บทสวดพระปฐมเทศนา หมุนกงล้อธรรมจักร พลิกชีวิต เสริมพลังมงคล เทวดาคุ้มครอง</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 15-20 นาที</span>
-            <span>☸️ มงคลสูงสุด</span>
-          </div>
-        </a>
-
-        <a href="prayers/dhammacakka-short.html" class="card">
-          <div>
-            <span class="card-tag">ปฐมเทศนา ฉบับย่อ</span>
-            <h3 class="card-title">ธัมมจักกัปปวัตตนสูตร (ฉบับย่อ 3-5 นาที)</h3>
-            <p class="card-desc">คัดเฉพาะหัวใจมัชฌิมาปฏิปทาและอริยสัจ 4 สวดง่าย กระชับ เหมาะสำหรับสวดทุกวัน</p>
-          </div>
-          <div class="card-meta">
-            <span>⏱️ 3-5 นาที</span>
-            <span>✨ สวดง่ายประจำวัน</span>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- Section 3: บทสวดประจำวันเกิด 7 วัน -->
-    <section id="birthday-prayers" style="margin-top: 3rem;">
-      <div class="section-header">
-        <div>
-          <span class="card-tag">เสริมดวงชะตาตามวัน</span>
-          <h2>บทสวดมนต์ประจำวันเกิด 7 วัน (คาถากำลังวัน)</h2>
-        </div>
-      </div>
-
-      <div class="grid-cards">
-        <a href="prayers/birthday-sunday.html" class="card">
+        <!-- 7 วันเกิด -->
+        <a href="prayers/birthday-sunday.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันอาทิตย์ (กำลังวัน 6)</span>
             <h3 class="card-title">คาถาโมรปริตร (วันอาทิตย์)</h3>
@@ -404,7 +370,7 @@
           <div class="card-meta"><span>สวด 6 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-monday.html" class="card">
+        <a href="prayers/birthday-monday.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันจันทร์ (กำลังวัน 15)</span>
             <h3 class="card-title">คาถายันทุน อภยปริตร (วันจันทร์)</h3>
@@ -413,7 +379,7 @@
           <div class="card-meta"><span>สวด 15 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-tuesday.html" class="card">
+        <a href="prayers/birthday-tuesday.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันอังคาร (กำลังวัน 8)</span>
             <h3 class="card-title">คาถากรณียเมตตสูตร (วันอังคาร)</h3>
@@ -422,7 +388,7 @@
           <div class="card-meta"><span>สวด 8 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-wednesday-day.html" class="card">
+        <a href="prayers/birthday-wednesday-day.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันพุธกลางวัน (กำลังวัน 17)</span>
             <h3 class="card-title">คาถาขันธปริตร (วันพุธกลางวัน)</h3>
@@ -431,7 +397,7 @@
           <div class="card-meta"><span>สวด 17 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-wednesday-night.html" class="card">
+        <a href="prayers/birthday-wednesday-night.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันพุธกลางคืน (กำลังวัน 12)</span>
             <h3 class="card-title">คาถาสุริยจันทปริตร (วันพุธกลางคืน)</h3>
@@ -440,7 +406,7 @@
           <div class="card-meta"><span>สวด 12 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-thursday.html" class="card">
+        <a href="prayers/birthday-thursday.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันพฤหัสบดี (กำลังวัน 19)</span>
             <h3 class="card-title">คาถารัตนสูตร (วันพฤหัสบดี)</h3>
@@ -449,7 +415,7 @@
           <div class="card-meta"><span>สวด 19 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-friday.html" class="card">
+        <a href="prayers/birthday-friday.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันศุกร์ (กำลังวัน 21)</span>
             <h3 class="card-title">คาถาอาฏานาฏิยปริตร (วันศุกร์)</h3>
@@ -458,7 +424,7 @@
           <div class="card-meta"><span>สวด 21 จบ</span></div>
         </a>
 
-        <a href="prayers/birthday-saturday.html" class="card">
+        <a href="prayers/birthday-saturday.html" class="card" data-cat="birthday">
           <div>
             <span class="card-tag">วันเสาร์ (กำลังวัน 10)</span>
             <h3 class="card-title">คาถาอังคุลิมาลปริตร (วันเสาร์)</h3>
@@ -466,14 +432,15 @@
           </div>
           <div class="card-meta"><span>สวด 10 จบ</span></div>
         </a>
+
       </div>
     </section>
 
-    <!-- Section 4: ตัวจับเวลาสมาธิ -->
-    <section id="meditation-section" class="counter-widget" style="margin-top: 3rem;">
+    <!-- 4. [ MEDITATION SECTION (กล่องสมาธิ 432Hz) ] -->
+    <section id="meditation-section" class="counter-widget" style="margin-top: 3.5rem;">
       <span class="card-tag">คลื่นเสียงบำบัด 432Hz</span>
       <h2>ตัวจับเวลานั่งสมาธิ (Meditation Timer)</h2>
-      <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 1.5rem;">กำหนดเวลาพักใจ นั่งสมาธิหลังสวดมนต์ พร้อมเสียงระฆังธิเบต/กังสดาลเมื่อเริ่มและครบเวลา</p>
+      <p style="color: var(--text-secondary); max-width: 550px; margin: 0 auto 1.5rem;">กำหนดเวลาพักใจ นั่งสมาธิหลังสวดมนต์ พร้อมเสียงระฆังธิเบต/กังสดาลเมื่อเริ่มและครบเวลา</p>
       
       <div class="counter-display">
         <span id="timer-display" class="counter-num" style="font-size: 3.5rem;">05:00</span>
@@ -489,6 +456,27 @@
         <button class="btn-pill timer-preset" data-minutes="10">10 นาที</button>
         <button class="btn-pill timer-preset" data-minutes="15">15 นาที</button>
         <button class="btn-pill timer-preset" data-minutes="30">30 นาที</button>
+      </div>
+    </section>
+
+    <!-- 5. [ SEO & GUIDANCE SECTION ] -->
+    <section class="article-section" style="margin-top: 3.5rem;">
+      <h2>อานิสงส์และข้อแนะนำในการสวดมนต์ให้ได้ผลสูงสุด</h2>
+      <p>การสวดมนต์เป็นประจำทุกวัน ไม่เพียงแต่สร้างสิริมงคลให้แก่ชีวิต แต่ยังเป็นกุศโลบายชั้นยอดในการฝึกจิต เจริญสติ และลดทอนความฟุ้งซ่าน:</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+        <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h3 style="color: var(--primary-gold); font-size: 1.1rem; margin-bottom: 0.5rem;">🧘 จิตสงบ มีสมาธิ</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">คลื่นสมองจะผ่อนคลาย ลดความเครียดและหลั่งสารความสุข ช่วยให้นอนหลับสบาย</p>
+        </div>
+        <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h3 style="color: var(--primary-gold); font-size: 1.1rem; margin-bottom: 0.5rem;">🛡️ พลังงานบวกคุ้มครอง</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">อานุภาพแห่งพระปริตรและพระรัตนตรัย ช่วยปัดเป่าสิ่งไม่ดีและเปิดทางแห่งโชคลาภ</p>
+        </div>
+        <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md);">
+          <h3 style="color: var(--primary-gold); font-size: 1.1rem; margin-bottom: 0.5rem;">📖 คู่มือลำดับการสวด</h3>
+          <p style="font-size: 0.9rem; color: var(--text-secondary);">หากไม่แน่ใจว่าต้องเริ่มจากบทไหน สามารถดู <a href="prayer-sequence.html" style="color: var(--primary-gold); text-decoration: underline;">คู่มือขั้นตอนการสวดมนต์ 6 สเต็ป</a> ได้ทันที</p>
+        </div>
       </div>
     </section>
 

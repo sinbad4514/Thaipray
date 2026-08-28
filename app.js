@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initFontResizer();
   initCounters();
-  initSearch();
+  initSearchAndTabs();
   initFAQ();
   initMeditationTimer();
 });
@@ -127,21 +127,42 @@ function initCounters() {
   });
 }
 
-// 4. Client Search Filter
-function initSearch() {
+// 4. Client Search & Category Tab Filter
+function initSearchAndTabs() {
   const searchInput = document.getElementById('prayer-search');
-  if (!searchInput) return;
-
+  const tabBtns = document.querySelectorAll('.category-tabs .tab-btn');
   const prayerCards = document.querySelectorAll('.grid-cards .card');
-  searchInput.addEventListener('input', (e) => {
-    const term = e.target.value.toLowerCase().trim();
+
+  let activeCategory = 'all';
+
+  function filterCards() {
+    const term = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    
     prayerCards.forEach(card => {
       const text = card.innerText.toLowerCase();
-      if (text.includes(term)) {
+      const cat = card.getAttribute('data-cat') || '';
+      
+      const matchSearch = !term || text.includes(term);
+      const matchCategory = activeCategory === 'all' || cat.includes(activeCategory);
+
+      if (matchSearch && matchCategory) {
         card.style.display = 'flex';
       } else {
         card.style.display = 'none';
       }
+    });
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filterCards);
+  }
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCategory = btn.getAttribute('data-category');
+      filterCards();
     });
   });
 }
