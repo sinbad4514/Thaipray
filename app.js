@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearchAndTabs();
   initFAQ();
   initMeditationTimer();
+  initShareButtons();
 });
 
 // 1. Dark/Light Theme Support
