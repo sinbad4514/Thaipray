@@ -67,6 +67,24 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://thaipray.com/prayers/dhammacakka.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thaipray.com/prayers/dhammacakka-short.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thaipray.com/prayers/karma-forgiveness.html</loc>
+    <lastmod>2026-08-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://thaipray.com/prayers/wealth-before-opening-shop.html</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
@@ -98,12 +116,6 @@
   </url>
   <url>
     <loc>https://thaipray.com/prayers/seven-paritta.html</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
-  </url>
-  <url>
-    <loc>https://thaipray.com/prayers/dhammacakka.html</loc>
     <lastmod>2026-08-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
