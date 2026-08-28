@@ -9,6 +9,7 @@ const prayers = [
   'mahachakrapat',
   'bahum-mahaka',
   'bedtime',
+  'bedtime-complete',
   'morning-routine',
   'uposatha-routine',
   'dhammacakka',
