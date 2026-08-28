@@ -2,6 +2,25 @@ const fs = require('fs');
 const path = require('path');
 
 const prayers = [
+  // Deities & Sacred Figures
+  'thao-wessuwan',
+  'phra-phrom',
+  'naga-srisuttho',
+  'ai-khai',
+  'xian-pae',
+  'guanyin',
+  'ganesha',
+  'lakshmi',
+  'rahu',
+  'trimurti',
+  'shiva',
+  'kali',
+  'luangpu-thuat',
+  'luangpho-sothon',
+  'upakut-luck',
+  'love-lakshmi',
+
+  // Core Prayers & Routines
   'katha-ngoen-lan',
   'chinnabanchon',
   'itipiso',
@@ -22,15 +41,12 @@ const prayers = [
   'mangphu-kham',
   'night-protection',
   'seven-paritta',
-  'ganesha',
-  'lakshmi',
-  'love-lakshmi',
-  'luangpho-sothon',
-  'upakut-luck',
   'metta',
   'solot-mongkhon',
   'itipiso-reverse',
   'ksitigarbha',
+
+  // Birthday Prayers
   'birthday-sunday',
   'birthday-monday',
   'birthday-tuesday',
