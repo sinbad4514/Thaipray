@@ -10,6 +10,7 @@ const prayers = [
   'bahum-mahaka',
   'bedtime',
   'bedtime-complete',
+  'share-merit',
   'morning-routine',
   'uposatha-routine',
   'dhammacakka',
