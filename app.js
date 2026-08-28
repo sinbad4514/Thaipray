@@ -163,7 +163,52 @@ function initFAQ() {
   });
 }
 
-// 6. Meditation Timer
+// Tibetan Singing Bowl / Temple Bell Sound Synthesizer via Web Audio API
+function playTibetanBell(isLong = false) {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return;
+    const ctx = new AudioContext();
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
+    const duration = isLong ? 6.5 : 3.5;
+    const baseFreq = 432; // 432Hz Healing Frequency
+
+    // Fundamental + Harmonious Overtones
+    const harmonics = [
+      { freq: baseFreq, gain: 0.6 },
+      { freq: baseFreq * 1.5, gain: 0.3 }, // Perfect Fifth
+      { freq: baseFreq * 2.0, gain: 0.15 },
+      { freq: baseFreq * 2.76, gain: 0.08 }
+    ];
+
+    harmonics.forEach(h => {
+      const osc = ctx.createOscillator();
+      const gainNode = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(h.freq, ctx.currentTime);
+
+      gainNode.gain.setValueAtTime(0, ctx.currentTime);
+      // Soft strike attack
+      gainNode.gain.linearRampToValueAtTime(h.gain, ctx.currentTime + 0.04);
+      // Long serene exponential decay
+      gainNode.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+      osc.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + duration);
+    });
+  } catch (e) {
+    console.log('Audio playback unavailable:', e);
+  }
+}
+
+// 6. Meditation Timer with Bell Sound & Haptic Feedback
 function initMeditationTimer() {
   const display = document.getElementById('timer-display');
   const btnToggle = document.getElementById('btn-timer-toggle');
@@ -195,6 +240,10 @@ function initMeditationTimer() {
     } else {
       isRunning = true;
       btnToggle.innerText = '⏸️ หยุดชั่วคราว';
+      
+      // ตีระฆัง 1 ครั้งตอนเริ่มนั่ง เพื่อรวมสติ
+      playTibetanBell(false);
+
       timerInterval = setInterval(() => {
         if (remainingSeconds > 0) {
           remainingSeconds--;
@@ -202,11 +251,17 @@ function initMeditationTimer() {
         } else {
           clearInterval(timerInterval);
           isRunning = false;
-          btnToggle.innerText = '✨ เสร็จสิ้น';
+          btnToggle.innerText = '✨ ครบเวลาแล้ว (อนุโมทนา)';
+          
+          // ตีระฆังยาว 3 ครั้งอย่างนุ่มนวล เมื่อครบกำหนดเวลา
+          playTibetanBell(true);
+          setTimeout(() => playTibetanBell(true), 2500);
+          setTimeout(() => playTibetanBell(true), 5000);
+
+          // สั่นเตือนบนมือถือ
           if (navigator.vibrate) {
             navigator.vibrate([200, 100, 200, 100, 400]);
           }
-          alert('ครบกำหนดเวลานั่งสมาธิแล้ว ขออนุโมทนาบุญครับ');
         }
       }, 1000);
     }
@@ -232,7 +287,7 @@ function initMeditationTimer() {
       totalSeconds = mins * 60;
       remainingSeconds = totalSeconds;
       updateDisplay();
-      btnToggle.innerText = 'เริ่มจับเวลา';
+      btnToggle.innerText = `เริ่มจับเวลา ${mins} นาที`;
     });
   });
 }
