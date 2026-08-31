@@ -1,89 +1,33 @@
 const fs = require('fs');
 const path = require('path');
 
-const prayers = [
-  // Sacred Buddha Images & National Shrines
-  'luangpho-klak-fin',
-  'phrachao-kao-tue',
-  'emerald-buddha',
-  'city-pillar-shrine',
-  'luangpho-sothon',
-  'phra-buddha-chinnarat',
-  'luangpho-thanjai',
-  'luangpho-guay',
-  'luangpho-ngern',
-  'luangpho-to-anan',
-  'luangpho-banlaem',
-  'luangpu-thuat',
-  'upakut-luck',
+const prayersDir = path.join(__dirname, 'prayers');
+const prayerFiles = fs.readdirSync(prayersDir).filter(f => f.endsWith('.html'));
 
-  // Deities & Sacred Figures
-  'thao-wessuwan',
-  'phra-phrom',
-  'naga-srisuttho',
-  'ai-khai',
-  'xian-pae',
-  'guanyin',
-  'ksitigarbha',
-  'ganesha',
-  'lakshmi',
-  'rahu',
-  'trimurti',
-  'shiva',
-  'kali',
-  'love-lakshmi',
+const today = new Date().toISOString().split('T')[0];
 
-  // Core Prayers & Routines
-  'katha-ngoen-lan',
-  'chinnabanchon',
-  'itipiso',
-  'itipiso-108',
-  'mahachakrapat',
-  'bahum-mahaka',
-  'bedtime',
-  'bedtime-complete',
-  'share-merit',
-  'morning-routine',
-  'uposatha-routine',
-  'dhammacakka',
-  'dhammacakka-short',
-  'karma-forgiveness',
-  'wealth-before-opening-shop',
-  'turtle-house',
-  'diamond-armor',
-  'mangphu-kham',
-  'night-protection',
-  'seven-paritta',
-  'metta',
-  'solot-mongkhon',
-  'itipiso-reverse',
-
-  // Birthday Prayers
-  'birthday-sunday',
-  'birthday-monday',
-  'birthday-tuesday',
-  'birthday-wednesday-day',
-  'birthday-wednesday-night',
-  'birthday-thursday',
-  'birthday-friday',
-  'birthday-saturday'
-];
-
-const allUrls = [
-  'https://thaipray.com/',
-  'https://thaipray.com/prayer-sequence.html',
-  ...prayers.map(p => `https://thaipray.com/prayers/${p}.html`)
-];
-
-const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls.map(url => `  <url>
-    <loc>${url}</loc>
-    <lastmod>2026-08-28</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>${url === 'https://thaipray.com/' ? '1.0' : '0.85'}</priority>
-  </url>`).join('\n')}
-</urlset>`;
+  <url>
+    <loc>https://thaipray.com/</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+`;
 
-fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemapContent, 'utf-8');
-console.log(`Updated Sitemap with ${allUrls.length} pages!`);
+prayerFiles.sort().forEach(file => {
+  sitemap += `  <url>
+    <loc>https://thaipray.com/prayers/${file}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+});
+
+sitemap += `</urlset>
+`;
+
+fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap, 'utf-8');
+console.log(`Updated Sitemap with all ${prayerFiles.length + 1} pages automatically!`);
