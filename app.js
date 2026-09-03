@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQ();
   initMeditationTimer();
   initShareButtons();
+  initBackToTop();
+  initStickySearch();
+  initFavorites();
 });
 
 // 1. Dark/Light Theme Support
@@ -355,3 +358,156 @@ function fallbackCopyText(text) {
 
 window.copyCurrentUrl = copyCurrentUrl;
 window.showToast = showToast;
+
+// 8. Back to Top Button
+function initBackToTop() {
+  let btn = document.getElementById('btn-back-to-top');
+  if (!btn) {
+    btn = document.createElement('button');
+    btn.id = 'btn-back-to-top';
+    btn.className = 'btn-back-to-top';
+    btn.innerHTML = '↑';
+    btn.setAttribute('aria-label', 'กลับสู่ด้านบน');
+    btn.title = 'กลับสู่ด้านบน';
+    document.body.appendChild(btn);
+  }
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 400) {
+      btn.classList.add('show');
+    } else {
+      btn.classList.remove('show');
+    }
+  });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// 9. Sticky Search Enhancement on Scroll
+function initStickySearch() {
+  const searchContainer = document.querySelector('.search-container');
+  if (!searchContainer) return;
+
+  const stickyThreshold = searchContainer.offsetTop + 80;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > stickyThreshold) {
+      searchContainer.classList.add('sticky-active');
+    } else {
+      searchContainer.classList.remove('sticky-active');
+    }
+  });
+}
+
+// 10. Favorites / Bookmark System (LocalStorage)
+function initFavorites() {
+  const FAV_KEY = 'thaipray_favorites';
+  let favorites = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+
+  // Check if we are on a single prayer page
+  const prayerBox = document.querySelector('.prayer-actions-bar');
+  const currentPath = window.location.pathname;
+  const isPrayerPage = currentPath.includes('/prayers/');
+
+  if (isPrayerPage && prayerBox) {
+    const filename = currentPath.split('/').pop();
+    const favBtn = document.createElement('button');
+    favBtn.className = 'btn-pill';
+    favBtn.style.marginLeft = 'auto';
+    favBtn.style.display = 'inline-flex';
+    favBtn.style.alignItems = 'center';
+    favBtn.style.gap = '0.4rem';
+    favBtn.style.borderColor = 'var(--border-strong)';
+    
+    const isFav = favorites.includes(filename);
+    updatePrayerPageFavBtn(favBtn, isFav);
+
+    favBtn.addEventListener('click', () => {
+      let currentFavs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+      if (currentFavs.includes(filename)) {
+        currentFavs = currentFavs.filter(f => f !== filename);
+        showToast('ลบบทสวดนี้ออกจากรายการโปรดแล้ว');
+        updatePrayerPageFavBtn(favBtn, false);
+      } else {
+        currentFavs.push(filename);
+        showToast('❤️ บันทึกเข้า "บทสวดที่บันทึกไว้" แล้ว');
+        updatePrayerPageFavBtn(favBtn, true);
+      }
+      localStorage.setItem(FAV_KEY, JSON.stringify(currentFavs));
+    });
+
+    prayerBox.appendChild(favBtn);
+  }
+
+  // Handle Favorites Tab on Homepage
+  const tabContainer = document.querySelector('.category-tabs');
+  if (tabContainer && !document.querySelector('.tab-btn[data-category="favorites"]')) {
+    const favTab = document.createElement('button');
+    favTab.className = 'btn-pill tab-btn';
+    favTab.setAttribute('data-category', 'favorites');
+    favTab.innerHTML = '❤️ ที่บันทึกไว้';
+    tabContainer.appendChild(favTab);
+
+    favTab.addEventListener('click', () => {
+      document.querySelectorAll('.category-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+      favTab.classList.add('active');
+      filterFavoritesOnly();
+    });
+  }
+
+  function filterFavoritesOnly() {
+    const prayerCards = document.querySelectorAll('.grid-cards .card');
+    const saved = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+    let visibleCount = 0;
+
+    prayerCards.forEach(card => {
+      const href = card.getAttribute('href') || '';
+      const filename = href.split('/').pop();
+      if (saved.includes(filename)) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    let emptyMsg = document.getElementById('fav-empty-msg');
+    if (visibleCount === 0) {
+      if (!emptyMsg) {
+        emptyMsg = document.createElement('div');
+        emptyMsg.id = 'fav-empty-msg';
+        emptyMsg.style.gridColumn = '1 / -1';
+        emptyMsg.style.textAlign = 'center';
+        emptyMsg.style.padding = '3rem 1rem';
+        emptyMsg.style.color = 'var(--text-secondary)';
+        emptyMsg.innerHTML = '<p style="font-size: 1.2rem; margin-bottom: 0.5rem;">ยังไม่มีบทสวดที่บันทึกไว้</p><p style="font-size: 0.9rem; color: var(--text-muted);">กดปุ่ม ❤️ ในหน้าบทสวดเพื่อบันทึกบทสวดที่คุณสวดเป็นประจำไว้ที่นี่ได้เลย</p>';
+        const grid = document.querySelector('.grid-cards');
+        if (grid) grid.appendChild(emptyMsg);
+      } else {
+        emptyMsg.style.display = 'block';
+      }
+    } else if (emptyMsg) {
+      emptyMsg.style.display = 'none';
+    }
+  }
+
+  // Also hook into other tab clicks to hide emptyMsg
+  document.querySelectorAll('.category-tabs .tab-btn:not([data-category="favorites"])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const emptyMsg = document.getElementById('fav-empty-msg');
+      if (emptyMsg) emptyMsg.style.display = 'none';
+    });
+  });
+}
+
+function updatePrayerPageFavBtn(btn, isFav) {
+  if (isFav) {
+    btn.innerHTML = '❤️ <span>บันทึกแล้ว</span>';
+    btn.style.color = '#ef4444';
+  } else {
+    btn.innerHTML = '🤍 <span>บันทึกบทสวดนี้</span>';
+    btn.style.color = 'var(--text-secondary)';
+  }
+}

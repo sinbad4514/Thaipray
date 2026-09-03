@@ -1741,6 +1741,23 @@ const prayers = [
   }
 ];
 
+function getRelatedPrayersHtml(currentPrayer) {
+  // Find up to 3 prayers in same category or adjacent
+  const sameCategory = prayers.filter(p => p.slug !== currentPrayer.slug && p.category === currentPrayer.category);
+  const fallback = prayers.filter(p => p.slug !== currentPrayer.slug && p.category !== currentPrayer.category);
+  
+  const related = [...sameCategory, ...fallback].slice(0, 3);
+  return related.map(item => `
+    <a href="${item.slug}.html" class="related-prayer-item">
+      <div>
+        <span class="related-prayer-tag">${item.tag || item.category}</span>
+        <div class="related-prayer-title">${item.title}</div>
+      </div>
+      <span style="font-size: 0.85rem; color: var(--primary-gold); margin-top: 0.5rem;">สวดต่อบทนี้ →</span>
+    </a>
+  `).join('');
+}
+
 function generatePrayerHtml(p) {
   const versesHtml = p.verses.map((v, i) => `
     <div class="prayer-verse">
@@ -1954,6 +1971,18 @@ function generatePrayerHtml(p) {
       ${faqHtml}
     </section>
     ` : ''}
+
+    <!-- Related Prayers (บทสวดแนะนำต่อเนื่อง) -->
+    <section class="related-prayers-section">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0;">✨ บทสวดมนต์แนะนำให้สวดต่อเนื่อง</h2>
+        <a href="../index.html#popular-prayers" style="font-size: 0.9rem; color: var(--primary-gold); text-decoration: none; font-weight: 600;">ดูบทสวดทั้งหมด →</a>
+      </div>
+      <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">เพิ่มพูนสิริมงคล เสริมบารมีรอบด้านด้วยบทสวดในหมวดหมู่เดียวกัน</p>
+      <div class="related-prayers-grid">
+        ${getRelatedPrayersHtml(p)}
+      </div>
+    </section>
 
   </main>
 
