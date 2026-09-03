@@ -406,65 +406,118 @@ function initFavorites() {
   const FAV_KEY = 'thaipray_favorites';
   let favorites = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
 
-  // Check if we are on a single prayer page
-  const prayerBox = document.querySelector('.prayer-actions-bar');
-  const currentPath = window.location.pathname;
-  const isPrayerPage = currentPath.includes('/prayers/');
-
-  if (isPrayerPage && prayerBox) {
-    const filename = currentPath.split('/').pop();
-    const favBtn = document.createElement('button');
-    favBtn.className = 'btn-pill';
-    favBtn.style.marginLeft = 'auto';
-    favBtn.style.display = 'inline-flex';
-    favBtn.style.alignItems = 'center';
-    favBtn.style.gap = '0.4rem';
-    favBtn.style.borderColor = 'var(--border-strong)';
-    
-    const isFav = favorites.includes(filename);
-    updatePrayerPageFavBtn(favBtn, isFav);
-
-    favBtn.addEventListener('click', () => {
-      let currentFavs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
-      if (currentFavs.includes(filename)) {
-        currentFavs = currentFavs.filter(f => f !== filename);
-        showToast('ลบบทสวดนี้ออกจากรายการโปรดแล้ว');
-        updatePrayerPageFavBtn(favBtn, false);
-      } else {
-        currentFavs.push(filename);
-        showToast('❤️ บันทึกเข้า "บทสวดที่บันทึกไว้" แล้ว');
-        updatePrayerPageFavBtn(favBtn, true);
-      }
-      localStorage.setItem(FAV_KEY, JSON.stringify(currentFavs));
-    });
-
-    prayerBox.appendChild(favBtn);
+  // Helper to get slug from URL
+  function getSlugFromPath(pathname) {
+    const parts = pathname.split('/');
+    const last = parts.pop() || parts.pop();
+    return last || '';
   }
 
-  // Handle Favorites Tab on Homepage
-  const tabContainer = document.querySelector('.category-tabs');
-  if (tabContainer && !document.querySelector('.tab-btn[data-category="favorites"]')) {
-    const favTab = document.createElement('button');
-    favTab.className = 'btn-pill tab-btn';
-    favTab.setAttribute('data-category', 'favorites');
-    favTab.innerHTML = '❤️ ที่บันทึกไว้';
-    tabContainer.appendChild(favTab);
+  // 1. In Single Prayer Pages: Add prominent Favorite button
+  const currentPath = window.location.pathname;
+  const isPrayerPage = currentPath.includes('/prayers/') || document.querySelector('.prayer-box') !== null;
+  const prayerBox = document.querySelector('.prayer-box');
 
-    favTab.addEventListener('click', () => {
+  if (isPrayerPage && prayerBox) {
+    const filename = getSlugFromPath(currentPath);
+    let favBar = document.getElementById('prayer-fav-bar');
+
+    if (!favBar) {
+      favBar = document.createElement('div');
+      favBar.id = 'prayer-fav-bar';
+      favBar.style.cssText = 'display: flex; justify-content: flex-end; align-items: center; margin-bottom: 0.75rem;';
+      
+      const favBtn = document.createElement('button');
+      favBtn.id = 'btn-toggle-favorite';
+      favBtn.className = 'btn-pill';
+      favBtn.style.cssText = 'display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.92rem; padding: 0.55rem 1.15rem; cursor: pointer; border-radius: 9999px; transition: all 0.2s ease;';
+
+      const isFav = favorites.includes(filename);
+      renderFavButtonState(favBtn, isFav);
+
+      favBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        let currentFavs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+        if (currentFavs.includes(filename)) {
+          currentFavs = currentFavs.filter(f => f !== filename);
+          showToast('ลบบทสวดนี้ออกจากรายการที่บันทึกแล้ว');
+          renderFavButtonState(favBtn, false);
+        } else {
+          currentFavs.push(filename);
+          showToast('❤️ บันทึกเข้า "บทสวดที่บันทึกไว้" เรียบร้อยแล้ว');
+          renderFavButtonState(favBtn, true);
+        }
+        localStorage.setItem(FAV_KEY, JSON.stringify(currentFavs));
+      });
+
+      favBar.appendChild(favBtn);
+      prayerBox.parentNode.insertBefore(favBar, prayerBox);
+    }
+  }
+
+  // 2. On Homepage: Add heart icons directly on each card
+  const prayerCards = document.querySelectorAll('.grid-cards .card');
+  prayerCards.forEach(card => {
+    const href = card.getAttribute('href') || '';
+    const filename = getSlugFromPath(href);
+    if (!filename) return;
+
+    card.style.position = 'relative';
+    if (!card.querySelector('.card-fav-btn')) {
+      const heartBtn = document.createElement('button');
+      heartBtn.className = 'card-fav-btn btn-fav';
+      heartBtn.setAttribute('aria-label', 'บันทึกเป็นบทสวดโปรด');
+      heartBtn.title = 'บันทึกเป็นบทสวดโปรด';
+
+      const isFav = favorites.includes(filename);
+      heartBtn.innerHTML = isFav ? '❤️' : '🤍';
+      if (isFav) heartBtn.classList.add('active');
+
+      heartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let currentFavs = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
+        if (currentFavs.includes(filename)) {
+          currentFavs = currentFavs.filter(f => f !== filename);
+          heartBtn.innerHTML = '🤍';
+          heartBtn.classList.remove('active');
+          showToast('ลบออกจากบทสวดที่บันทึกไว้แล้ว');
+        } else {
+          currentFavs.push(filename);
+          heartBtn.innerHTML = '❤️';
+          heartBtn.classList.add('active');
+          showToast('❤️ บันทึกบทสวดนี้เรียบร้อยแล้ว');
+        }
+        localStorage.setItem(FAV_KEY, JSON.stringify(currentFavs));
+
+        // If currently on favorites tab, re-filter
+        const activeTab = document.querySelector('.category-tabs .tab-btn.active');
+        if (activeTab && activeTab.getAttribute('data-category') === 'favorites') {
+          filterFavoritesOnly();
+        }
+      });
+
+      card.appendChild(heartBtn);
+    }
+  });
+
+  // 3. Tab Filter for Favorites
+  const favTabBtn = document.querySelector('.category-tabs .tab-btn[data-category="favorites"]');
+  if (favTabBtn) {
+    favTabBtn.addEventListener('click', () => {
       document.querySelectorAll('.category-tabs .tab-btn').forEach(b => b.classList.remove('active'));
-      favTab.classList.add('active');
+      favTabBtn.classList.add('active');
       filterFavoritesOnly();
     });
   }
 
   function filterFavoritesOnly() {
-    const prayerCards = document.querySelectorAll('.grid-cards .card');
     const saved = JSON.parse(localStorage.getItem(FAV_KEY) || '[]');
     let visibleCount = 0;
 
     prayerCards.forEach(card => {
       const href = card.getAttribute('href') || '';
-      const filename = href.split('/').pop();
+      const filename = getSlugFromPath(href);
       if (saved.includes(filename)) {
         card.style.display = 'flex';
         visibleCount++;
@@ -480,9 +533,21 @@ function initFavorites() {
         emptyMsg.id = 'fav-empty-msg';
         emptyMsg.style.gridColumn = '1 / -1';
         emptyMsg.style.textAlign = 'center';
-        emptyMsg.style.padding = '3rem 1rem';
-        emptyMsg.style.color = 'var(--text-secondary)';
-        emptyMsg.innerHTML = '<p style="font-size: 1.2rem; margin-bottom: 0.5rem;">ยังไม่มีบทสวดที่บันทึกไว้</p><p style="font-size: 0.9rem; color: var(--text-muted);">กดปุ่ม ❤️ ในหน้าบทสวดเพื่อบันทึกบทสวดที่คุณสวดเป็นประจำไว้ที่นี่ได้เลย</p>';
+        emptyMsg.style.padding = '3.5rem 1.5rem';
+        emptyMsg.style.background = 'var(--bg-surface)';
+        emptyMsg.style.borderRadius = 'var(--radius-lg)';
+        emptyMsg.style.border = '1px dashed var(--border-strong)';
+        emptyMsg.style.margin = '1rem 0';
+        emptyMsg.innerHTML = `
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤍</div>
+          <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">ยังไม่มีบทสวดที่บันทึกไว้</h3>
+          <p style="font-size: 0.95rem; color: var(--text-secondary); max-width: 480px; margin: 0 auto 1.25rem auto; line-height: 1.6;">
+            คุณสามารถแตะที่รูปหัวใจ 🤍 บนการ์ดบทสวด หรือแตะปุ่ม "บันทึกบทสวดนี้" ในหน้าบทสวด เพื่อรวบรวมบทที่คุณสวดเป็นประจำไว้ที่นี่ได้เลย
+          </p>
+          <button onclick="document.querySelector('.tab-btn[data-category=\\'all\\']').click()" class="btn-pill" style="border-color: var(--primary-gold); color: var(--primary-gold); font-weight: 600;">
+            ← ดูบทสวดทั้งหมด
+          </button>
+        `;
         const grid = document.querySelector('.grid-cards');
         if (grid) grid.appendChild(emptyMsg);
       } else {
@@ -493,7 +558,7 @@ function initFavorites() {
     }
   }
 
-  // Also hook into other tab clicks to hide emptyMsg
+  // Reset emptyMsg on other tabs
   document.querySelectorAll('.category-tabs .tab-btn:not([data-category="favorites"])').forEach(btn => {
     btn.addEventListener('click', () => {
       const emptyMsg = document.getElementById('fav-empty-msg');
@@ -502,12 +567,16 @@ function initFavorites() {
   });
 }
 
-function updatePrayerPageFavBtn(btn, isFav) {
+function renderFavButtonState(btn, isFav) {
   if (isFav) {
-    btn.innerHTML = '❤️ <span>บันทึกแล้ว</span>';
+    btn.innerHTML = '❤️ <span>บันทึกในรายการโปรดแล้ว</span>';
+    btn.style.borderColor = '#ef4444';
     btn.style.color = '#ef4444';
+    btn.style.background = 'rgba(239, 68, 68, 0.08)';
   } else {
-    btn.innerHTML = '🤍 <span>บันทึกบทสวดนี้</span>';
-    btn.style.color = 'var(--text-secondary)';
+    btn.innerHTML = '🤍 <span>บันทึกเป็นบทสวดประจำ (Favorite)</span>';
+    btn.style.borderColor = 'var(--border-strong)';
+    btn.style.color = 'var(--text-primary)';
+    btn.style.background = 'var(--bg-surface)';
   }
 }
