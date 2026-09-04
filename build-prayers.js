@@ -1845,6 +1845,29 @@ function generatePrayerHtml(p) {
           "@type": "Organization",
           "name": "ThaiPray"
         }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "หน้าแรก",
+            "item": "https://thaipray.com/index.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "${p.category}",
+            "item": "https://thaipray.com/index.html#popular-prayers"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "${p.title}",
+            "item": "https://thaipray.com/prayers/${p.slug}.html"
+          }
+        ]
       }
       ${p.faq && p.faq.length > 0 ? `,
       {
