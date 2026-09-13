@@ -81,6 +81,8 @@
 html {
   font-size: 16px;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -92,6 +94,9 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
@@ -1029,7 +1034,7 @@ p {
 
 /* 5. Advertising Banner Unit (Line @johnwick) */
 .ad-banner-section {
-  margin: 2.5rem 0;
+  margin: 2rem 0;
   width: 100%;
 }
 
@@ -1039,15 +1044,16 @@ p {
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(212, 168, 83, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   background: var(--bg-surface-elevated);
+  max-width: 100%;
 }
 
 .ad-banner-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   border-color: var(--primary-gold);
-  box-shadow: 0 12px 32px rgba(212, 168, 83, 0.2);
+  box-shadow: 0 8px 24px rgba(212, 168, 83, 0.22);
 }
 
 .ad-banner-img {
@@ -1055,6 +1061,14 @@ p {
   height: auto;
   display: block;
   object-fit: cover;
+  max-height: 220px;
+}
+
+@media (max-width: 640px) {
+  .ad-banner-img {
+    max-height: 140px;
+    border-radius: var(--radius-md);
+  }
 }
 
 /* Native Responsive Ad Box (HTML/CSS Based) */
@@ -1062,16 +1076,17 @@ p {
   background: linear-gradient(135deg, #09192f 0%, #0d274d 50%, #0a1c36 100%);
   border: 1.5px solid #d4a853;
   border-radius: var(--radius-lg);
-  padding: 1.75rem 2rem;
+  padding: 1.5rem 1.75rem;
   color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  gap: 1.25rem;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.22);
   position: relative;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .ad-native-box::before {
@@ -1079,28 +1094,35 @@ p {
   position: absolute;
   top: -50%;
   right: -20%;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
 
+.ad-native-content {
+  flex: 1 1 280px;
+  min-width: 0;
+}
+
 .ad-native-content h3 {
   color: #f7d58b;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   font-weight: 700;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.35rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  word-break: break-word;
 }
 
 .ad-native-content p {
   color: #cbd5e1;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   margin: 0;
   line-height: 1.5;
+  word-break: break-word;
 }
 
 .ad-native-badge {
@@ -1115,37 +1137,55 @@ p {
   margin-bottom: 0.5rem;
 }
 
+.ad-native-action {
+  flex-shrink: 0;
+}
+
 .ad-native-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: center;
+  gap: 0.5rem;
   background: #06c755;
   color: #ffffff !important;
   font-weight: 700;
-  font-size: 1.05rem;
-  padding: 0.75rem 1.4rem;
+  font-size: 0.98rem;
+  padding: 0.65rem 1.3rem;
   border-radius: 999px;
   text-decoration: none;
-  box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4);
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.4);
   transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .ad-native-btn:hover {
   background: #05b34c;
-  transform: scale(1.04);
-  box-shadow: 0 6px 20px rgba(6, 199, 85, 0.6);
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(6, 199, 85, 0.55);
 }
 
 @media (max-width: 640px) {
   .ad-native-box {
-    padding: 1.25rem;
+    padding: 1.2rem 1rem;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    text-align: center;
+    gap: 1rem;
+  }
+  .ad-native-content h3 {
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .ad-native-content p {
+    font-size: 0.85rem;
+  }
+  .ad-native-action {
+    width: 100%;
   }
   .ad-native-btn {
     width: 100%;
-    justify-content: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -1153,11 +1193,14 @@ p {
 .top-ad-announcement {
   background: linear-gradient(90deg, #09192f 0%, #152e50 50%, #09192f 100%);
   border-bottom: 1px solid rgba(212, 168, 83, 0.4);
-  padding: 0.5rem 1rem;
-  font-size: 0.88rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.85rem;
   color: #ffffff;
   position: relative;
   z-index: 99;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 .top-ad-content {
@@ -1167,31 +1210,41 @@ p {
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .top-ad-badge {
+  display: inline-block;
   background: rgba(212, 168, 83, 0.25);
   color: #f7d58b;
   border: 1px solid rgba(212, 168, 83, 0.5);
   padding: 0.15rem 0.5rem;
   border-radius: 999px;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 600;
-  margin-right: 0.5rem;
+  margin-right: 0.4rem;
+  vertical-align: middle;
+}
+
+.top-ad-text {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  vertical-align: middle;
 }
 
 .top-ad-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  justify-content: center;
+  gap: 0.35rem;
   background: #06c755;
   color: #ffffff !important;
-  padding: 0.35rem 0.85rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   box-shadow: 0 2px 8px rgba(6, 199, 85, 0.3);
   transition: transform 0.2s ease, background 0.2s ease;
   white-space: nowrap;
@@ -1203,9 +1256,22 @@ p {
 }
 
 @media (max-width: 640px) {
+  .top-ad-announcement {
+    padding: 0.4rem 0.5rem;
+  }
   .top-ad-content {
     justify-content: center;
     text-align: center;
+    gap: 0.4rem;
+  }
+  .top-ad-text {
+    display: inline-block;
+    font-size: 0.76rem;
+    line-height: 1.35;
+  }
+  .top-ad-btn {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.65rem;
   }
 }
 
