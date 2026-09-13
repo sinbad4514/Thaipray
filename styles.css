@@ -1149,4 +1149,65 @@ p {
   }
 }
 
+/* Top Announcement Banner (Compact Header Bar) */
+.top-ad-announcement {
+  background: linear-gradient(90deg, #09192f 0%, #152e50 50%, #09192f 100%);
+  border-bottom: 1px solid rgba(212, 168, 83, 0.4);
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
+  color: #ffffff;
+  position: relative;
+  z-index: 99;
+}
+
+.top-ad-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.top-ad-badge {
+  background: rgba(212, 168, 83, 0.25);
+  color: #f7d58b;
+  border: 1px solid rgba(212, 168, 83, 0.5);
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.top-ad-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: #06c755;
+  color: #ffffff !important;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.82rem;
+  box-shadow: 0 2px 8px rgba(6, 199, 85, 0.3);
+  transition: transform 0.2s ease, background 0.2s ease;
+  white-space: nowrap;
+}
+
+.top-ad-btn:hover {
+  background: #05b34c;
+  transform: scale(1.03);
+}
+
+@media (max-width: 640px) {
+  .top-ad-content {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+
 
