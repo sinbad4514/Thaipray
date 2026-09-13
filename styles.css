@@ -1027,3 +1027,126 @@ p {
   color: var(--text-muted);
 }
 
+/* 5. Advertising Banner Unit (Line @johnwick) */
+.ad-banner-section {
+  margin: 2.5rem 0;
+  width: 100%;
+}
+
+.ad-banner-card {
+  display: block;
+  text-decoration: none;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid rgba(212, 168, 83, 0.35);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  background: var(--bg-surface-elevated);
+}
+
+.ad-banner-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-gold);
+  box-shadow: 0 12px 32px rgba(212, 168, 83, 0.2);
+}
+
+.ad-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Native Responsive Ad Box (HTML/CSS Based) */
+.ad-native-box {
+  background: linear-gradient(135deg, #09192f 0%, #0d274d 50%, #0a1c36 100%);
+  border: 1.5px solid #d4a853;
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 2rem;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.ad-native-box::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(212, 168, 83, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ad-native-content h3 {
+  color: #f7d58b;
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ad-native-content p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.ad-native-badge {
+  display: inline-block;
+  background: rgba(212, 168, 83, 0.2);
+  color: #f7d58b;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212, 168, 83, 0.4);
+  margin-bottom: 0.5rem;
+}
+
+.ad-native-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #06c755;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(6, 199, 85, 0.4);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.ad-native-btn:hover {
+  background: #05b34c;
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(6, 199, 85, 0.6);
+}
+
+@media (max-width: 640px) {
+  .ad-native-box {
+    padding: 1.25rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .ad-native-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+
