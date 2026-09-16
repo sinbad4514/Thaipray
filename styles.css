@@ -1782,77 +1782,174 @@ p {
 .shop-review-summary {
   flex: 0 0 auto;
   min-width: 170px;
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 1.25rem;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
   background: var(--bg-surface);
   text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.shop-review-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.shop-review-score-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--primary-gold);
+  font-family: var(--font-heading);
+  line-height: 1;
+}
+
+.shop-review-score-max {
+  font-size: 0.95rem;
+  color: var(--text-muted);
 }
 
 .shop-review-stars {
   display: block;
-  color: var(--text-muted);
-  font-size: 1.2rem;
-  letter-spacing: 0.12em;
+  color: #f59e0b;
+  font-size: 1.15rem;
+  letter-spacing: 0.15em;
   line-height: 1;
-  margin-bottom: 0.35rem;
-}
-
-.shop-review-summary strong,
-.shop-review-summary small {
-  display: block;
+  margin: 0.35rem 0 0.25rem;
 }
 
 .shop-review-summary strong {
+  display: block;
   color: var(--text-primary);
   font-size: 0.84rem;
 }
 
 .shop-review-summary small {
+  display: block;
   color: var(--text-muted);
   font-size: 0.72rem;
   margin-top: 0.18rem;
 }
 
-.shop-review-empty {
+/* Reviews Grid & Cards */
+.shop-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.review-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.review-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(212, 168, 83, 0.5);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.review-card-top {
   display: flex;
   align-items: center;
-  gap: 1.1rem;
-  padding: 1.15rem;
-  border: 1px dashed rgba(179, 130, 42, 0.4);
-  border-radius: var(--radius-md);
-  background: rgba(179, 130, 42, 0.06);
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
-.shop-review-empty-icon {
-  display: grid;
-  place-items: center;
-  width: 3.2rem;
-  height: 3.2rem;
-  flex: 0 0 3.2rem;
+.review-user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.review-avatar {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--primary-gold-light);
-  font-size: 1.55rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #ffffff;
+  flex-shrink: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-.shop-review-empty-copy h3 {
+.review-name {
+  font-weight: 700;
+  font-size: 0.95rem;
   color: var(--text-primary);
-  font-size: 1rem;
-  margin: 0 0 0.25rem;
+  line-height: 1.2;
 }
 
-.shop-review-empty-copy p {
-  color: var(--text-secondary);
-  font-size: 0.86rem;
-  line-height: 1.55;
-  margin: 0 0 0.8rem;
+.review-location {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
 }
 
-.shop-review-empty-copy .btn-buy-line {
+.review-stars {
+  color: #f59e0b;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+}
+
+.review-tag {
   display: inline-flex;
-  width: auto;
-  padding: 0.58rem 1rem;
-  font-size: 0.86rem;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--primary-gold-dark, #b3822a);
+  background: rgba(212, 168, 83, 0.12);
+  border: 1px solid rgba(212, 168, 83, 0.3);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  margin-bottom: 0.65rem;
+  width: fit-content;
+}
+
+.review-text {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 0.85rem;
+  flex-grow: 1;
+}
+
+.review-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.review-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.review-verified svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
 }
 
 .shop-faq {
