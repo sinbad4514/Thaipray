@@ -1740,6 +1740,121 @@ p {
   box-shadow: 0 6px 18px rgba(6, 199, 85, 0.5);
 }
 
+.shop-reviews {
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 0 0 3rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.shop-reviews-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.shop-reviews-kicker {
+  display: inline-block;
+  color: var(--primary-gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.45rem;
+}
+
+.shop-reviews h2 {
+  color: var(--text-primary);
+  font-size: 1.45rem;
+  margin: 0 0 0.35rem;
+}
+
+.shop-reviews-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.shop-review-summary {
+  flex: 0 0 auto;
+  min-width: 170px;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  text-align: center;
+}
+
+.shop-review-stars {
+  display: block;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  margin-bottom: 0.35rem;
+}
+
+.shop-review-summary strong,
+.shop-review-summary small {
+  display: block;
+}
+
+.shop-review-summary strong {
+  color: var(--text-primary);
+  font-size: 0.84rem;
+}
+
+.shop-review-summary small {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  margin-top: 0.18rem;
+}
+
+.shop-review-empty {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.15rem;
+  border: 1px dashed rgba(179, 130, 42, 0.4);
+  border-radius: var(--radius-md);
+  background: rgba(179, 130, 42, 0.06);
+}
+
+.shop-review-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  flex: 0 0 3.2rem;
+  border-radius: 50%;
+  background: var(--primary-gold-light);
+  font-size: 1.55rem;
+}
+
+.shop-review-empty-copy h3 {
+  color: var(--text-primary);
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
+}
+
+.shop-review-empty-copy p {
+  color: var(--text-secondary);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 0 0 0.8rem;
+}
+
+.shop-review-empty-copy .btn-buy-line {
+  display: inline-flex;
+  width: auto;
+  padding: 0.58rem 1rem;
+  font-size: 0.86rem;
+}
+
 .shop-faq {
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
@@ -1758,6 +1873,22 @@ p {
     align-items: flex-start;
     gap: 0.75rem;
   }
+  .shop-reviews {
+    padding: 1.25rem;
+  }
+  .shop-reviews-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .shop-review-summary {
+    width: 100%;
+  }
+  .shop-review-empty {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .shop-review-empty-copy .btn-buy-line {
+    width: 100%;
+  }
 }
-
 
