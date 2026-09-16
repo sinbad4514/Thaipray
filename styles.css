@@ -1960,6 +1960,103 @@ p {
   margin: 3rem 0;
 }
 
+/* Category Switcher Tabs */
+.shop-category-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.5rem 0 2.5rem;
+  flex-wrap: wrap;
+}
+
+.shop-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border-light);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.shop-tab-btn:hover {
+  border-color: var(--primary-gold);
+  color: var(--primary-gold);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 168, 83, 0.15);
+}
+
+.shop-tab-btn.active {
+  background: linear-gradient(135deg, #09192f 0%, #152e50 100%);
+  color: #f7d58b !important;
+  border-color: #d4a853;
+  box-shadow: 0 4px 16px rgba(13, 39, 77, 0.35);
+}
+
+/* Charity Recommended Destinations */
+.charity-dest-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  margin: 2.5rem 0 3rem;
+}
+
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+.dest-card {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.dest-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--primary-gold);
+}
+
+.dest-card-title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-primary);
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.dest-card-desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0 0 0.65rem;
+}
+
+.dest-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(22, 163, 74, 0.12);
+  color: #16a34a;
+  border: 1px solid rgba(22, 163, 74, 0.25);
+}
+
 @media (max-width: 640px) {
   .products-grid {
     grid-template-columns: 1fr;
@@ -1986,6 +2083,18 @@ p {
   }
   .shop-review-empty-copy .btn-buy-line {
     width: 100%;
+  }
+  .shop-category-tabs {
+    gap: 0.5rem;
+  }
+  .shop-tab-btn {
+    font-size: 0.82rem;
+    padding: 0.5rem 0.9rem;
+    width: 100%;
+    justify-content: center;
+  }
+  .charity-dest-section {
+    padding: 1.25rem;
   }
 }
 
