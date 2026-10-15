@@ -2,7 +2,7 @@
   "name": "ThaiPray บทสวดมนต์ศักดิ์สิทธิ์",
   "short_name": "ThaiPray",
   "description": "รวมบทสวดมนต์ หลวงพ่อคู่บ้านคู่เมือง คาถาบูชาเทพเจ้า และจับเวลาสมาธิ 432Hz",
-  "start_url": "/index.html",
+  "start_url": "/./",
   "display": "standalone",
   "background_color": "#09192f",
   "theme_color": "#09192f",

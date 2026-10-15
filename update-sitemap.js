@@ -18,7 +18,7 @@ let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 
 prayerFiles.sort().forEach(file => {
   sitemap += `  <url>
-    <loc>https://thaipray.com/prayers/${file}</loc>
+    <loc>https://thaipray.com/prayers/${file.replace(/\.html$/, "")}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

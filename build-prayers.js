@@ -1748,7 +1748,7 @@ function getRelatedPrayersHtml(currentPrayer) {
   
   const related = [...sameCategory, ...fallback].slice(0, 3);
   return related.map(item => `
-    <a href="${item.slug}.html" class="related-prayer-item">
+    <a href="${item.slug}" class="related-prayer-item">
       <div>
         <span class="related-prayer-tag">${item.tag || item.category}</span>
         <div class="related-prayer-title">${item.title}</div>
@@ -1767,12 +1767,12 @@ function generatePrayerHtml(p) {
         <h2 id="prayer-shop-highlight-title">สวดมนต์แล้ว ร่วมส่งต่อบุญได้ง่าย</h2>
         <p>เลือกชุดสังฆทานหรือเครื่องไทยธรรมสำหรับถวายพระ ทำบุญบ้าน หรือส่งตรงถึงวัด จัดส่งถึงบ้านหรือวัด ค่าส่งแจ้งตามจริงก่อนชำระเงิน</p>
         <div class="home-shop-highlight-actions">
-          <a href="../shop.html" class="home-shop-highlight-btn">เลือกชุดทำบุญ <span aria-hidden="true">→</span></a>
-          <a href="../shop.html" class="home-shop-highlight-link">ดูรายการทั้งหมด</a>
+          <a href="../shop" class="home-shop-highlight-btn">เลือกชุดทำบุญ <span aria-hidden="true">→</span></a>
+          <a href="../shop" class="home-shop-highlight-link">ดูรายการทั้งหมด</a>
         </div>
       </div>
       <div class="home-shop-highlight-products" aria-label="ชุดทำบุญยอดนิยม">
-        <a href="../shop.html" class="home-shop-highlight-product">
+        <a href="../shop" class="home-shop-highlight-product">
           <div class="home-shop-highlight-product-image-wrap">
             <span class="home-shop-highlight-product-badge">ยอดนิยมอันดับ 1</span>
             <img src="../assets/images/products/tp01-generated-final-v1.png" alt="ชุดสังฆทานเพิ่มพูนสุข 2 ถุงทอง" loading="lazy">
@@ -1783,7 +1783,7 @@ function generatePrayerHtml(p) {
             <small>฿650 / ชุด · ไม่รวมค่าส่ง</small>
           </div>
         </a>
-        <a href="../shop.html" class="home-shop-highlight-product">
+        <a href="../shop" class="home-shop-highlight-product">
           <div class="home-shop-highlight-product-image-wrap">
             <span class="home-shop-highlight-product-badge">สานบุญ ธรรมชาติ</span>
             <img src="../assets/images/products/tp02-generated-final-v1.png" alt="ชุดสังฆทานสานบุญ 4 ชะลอม" loading="lazy">
@@ -1794,7 +1794,7 @@ function generatePrayerHtml(p) {
             <small>฿900 / ชุด · ไม่รวมค่าส่ง</small>
           </div>
         </a>
-        <a href="../shop.html" class="home-shop-highlight-product">
+        <a href="../shop" class="home-shop-highlight-product">
           <div class="home-shop-highlight-product-image-wrap">
             <span class="home-shop-highlight-product-badge">ทำบุญได้ทุกโอกาส</span>
             <img src="../assets/images/products/tp05-generated-final-v1.png" alt="ผ้าไตรเต็ม 7 ชิ้น สีพระราช" loading="lazy">
@@ -1815,12 +1815,12 @@ function generatePrayerHtml(p) {
         <h2 id="prayer-charity-highlight-title">ร่วมส่งต่อความเมตตา บริจาคของจำเป็นสู่ รพ. & มูลนิธิ</h2>
         <p>สร้างมหากุศลส่งต่อความช่วยเหลือแก่ผู้ป่วยอนาถา เด็กกำพร้า และคนชรา จัดส่งของจำเป็นยกลังมาตรฐานส่งตรงถึงบ้านหรือมูลนิธิ</p>
         <div class="home-shop-highlight-actions">
-          <a href="../charity.html" class="home-shop-highlight-btn" style="background: linear-gradient(135deg, #38bdf8, #0284c7); color: #ffffff;">เลือกชุดบริจาค <span aria-hidden="true">→</span></a>
-          <a href="../charity.html" class="home-shop-highlight-link" style="color: #7dd3fc;">ดูรายการทั้งหมด (6 เซ็ต)</a>
+          <a href="../charity" class="home-shop-highlight-btn" style="background: linear-gradient(135deg, #38bdf8, #0284c7); color: #ffffff;">เลือกชุดบริจาค <span aria-hidden="true">→</span></a>
+          <a href="../charity" class="home-shop-highlight-link" style="color: #7dd3fc;">ดูรายการทั้งหมด (6 เซ็ต)</a>
         </div>
       </div>
       <div class="home-shop-highlight-products" aria-label="ชุดของบริจาคยอดนิยม">
-        <a href="../charity.html#cat-hospital" class="home-shop-highlight-product">
+        <a href="../charity#cat-hospital" class="home-shop-highlight-product">
           <div class="home-shop-highlight-product-image-wrap">
             <span class="home-shop-highlight-product-badge">🏥 บริจาคโรงพยาบาล</span>
             <img src="../assets/images/products/charity-carton-diaper.jpg" alt="ผ้าอ้อมผู้ใหญ่ Certainty ซุปเปอร์เซฟ ยกลัง 96 ชิ้น" loading="lazy">
@@ -1831,7 +1831,7 @@ function generatePrayerHtml(p) {
             <small>฿ 1,950 / ลัง · ไม่รวมค่าส่ง</small>
           </div>
         </a>
-        <a href="../charity.html#cat-children" class="home-shop-highlight-product">
+        <a href="../charity#cat-children" class="home-shop-highlight-product">
           <div class="home-shop-highlight-product-image-wrap">
             <span class="home-shop-highlight-product-badge">👶 สถานสงเคราะห์เด็ก</span>
             <img src="../assets/images/products/charity-carton-milk.jpg" alt="นมไทย-เดนมาร์ค UHT 180 มล. ยกลัง 36 กล่อง" loading="lazy">
@@ -1842,7 +1842,7 @@ function generatePrayerHtml(p) {
             <small>฿ 489 / ลัง · ไม่รวมค่าส่ง</small>
           </div>
         </a>
-        <a href="../charity.html#cat-elderly" class="home-shop-highlight-product">
+        <a href="../charity#cat-elderly" class="home-shop-highlight-product">
           <div class="home-shop-highlight-product-image-wrap">
             <span class="home-shop-highlight-product-badge">🌾 โรงทาน & คนชรา</span>
             <img src="../assets/images/products/charity-rice-chat.jpg" alt="ข้าวหอมมะลิใหม่ 100% ตราฉัตร 5 กก. แพ็กคู่ 10 กิโลกรัม" loading="lazy">
@@ -1916,12 +1916,12 @@ function generatePrayerHtml(p) {
   <title>${p.title} พร้อมเคล็ดลับการบูชาและตัวนับรอบ | ThaiPray</title>
   <meta name="description" content="${p.desc} มีคำอ่านแบ่งวรรคถูกต้อง เคล็ดลับของไหว้ ตัวหนังสืออ่านง่าย ปรับขนาดได้ โหมดกลางคืน">
   <meta name="keywords" content="${p.title}, บทสวดมนต์, คำอ่าน, เคล็ดลับการบูชา, ของไหว้, อานิสงส์, คาถาบูชา">
-  <link rel="canonical" href="https://thaipray.com/prayers/${p.slug}.html">
+  <link rel="canonical" href="https://thaipray.com/prayers/${p.slug}">
   
   <meta property="og:type" content="article">
   <meta property="og:title" content="${p.title} | ThaiPray">
   <meta property="og:description" content="${p.desc}">
-  <meta property="og:url" content="https://thaipray.com/prayers/${p.slug}.html">
+  <meta property="og:url" content="https://thaipray.com/prayers/${p.slug}">
   
   <link rel="stylesheet" href="../styles.css?v=20260828">
 
@@ -1933,7 +1933,7 @@ function generatePrayerHtml(p) {
         "@type": "Article",
         "headline": "${p.title}",
         "description": "${p.desc}",
-        "mainEntityOfPage": "https://thaipray.com/prayers/${p.slug}.html",
+        "mainEntityOfPage": "https://thaipray.com/prayers/${p.slug}",
         "author": {
           "@type": "Organization",
           "name": "ThaiPray"
@@ -1950,19 +1950,19 @@ function generatePrayerHtml(p) {
             "@type": "ListItem",
             "position": 1,
             "name": "หน้าแรก",
-            "item": "https://thaipray.com/index.html"
+            "item": "https://thaipray.com/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "${p.category}",
-            "item": "https://thaipray.com/index.html#popular-prayers"
+            "item": "https://thaipray.com/#popular-prayers"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "${p.title}",
-            "item": "https://thaipray.com/prayers/${p.slug}.html"
+            "item": "https://thaipray.com/prayers/${p.slug}"
           }
         ]
       }
@@ -1979,14 +1979,14 @@ function generatePrayerHtml(p) {
 
   <header class="header">
     <div class="container nav-container">
-      <a href="../index.html" class="logo">
+      <a href="../" class="logo">
         <span class="logo-badge">🙏</span>
         <span>ThaiPray</span>
       </a>
       <ul class="nav-menu">
-        <li><a href="../index.html" class="nav-link">หน้าแรก</a></li>
-        <li><a href="../prayer-sequence.html" class="nav-link">ลำดับการสวด</a></li>
-        <li><a href="../index.html#popular-prayers" class="nav-link active">บทสวดมนต์</a></li>
+        <li><a href="../" class="nav-link">หน้าแรก</a></li>
+        <li><a href="../prayer-sequence" class="nav-link">ลำดับการสวด</a></li>
+        <li><a href="../#popular-prayers" class="nav-link active">บทสวดมนต์</a></li>
       </ul>
       <div class="nav-actions">
         <button id="theme-toggle" class="btn-icon" aria-label="สลับโหมด">🌙</button>
@@ -1998,9 +1998,9 @@ function generatePrayerHtml(p) {
     ${shopHighlightHtml}
     
     <ul class="breadcrumb">
-      <li><a href="../index.html">หน้าแรก</a></li>
+      <li><a href="../">หน้าแรก</a></li>
       <li>›</li>
-      <li><a href="../index.html#popular-prayers">${p.category}</a></li>
+      <li><a href="../#popular-prayers">${p.category}</a></li>
       <li>›</li>
       <li>${p.title}</li>
     </ul>
@@ -2060,15 +2060,15 @@ function generatePrayerHtml(p) {
       <div class="share-title" style="font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem;">🕊️ ส่งต่อบทสวดมนต์และเคล็ดลับการบูชา</div>
       <div class="share-subtitle" style="font-size: 0.9rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto 1.5rem auto; line-height: 1.5;">การให้ธรรมะเป็นทาน ชนะการให้ทั้งปวง ร่วมแชร์บทสวดมนต์นี้ให้แก่ครอบครัวและคนที่คุณรักเพื่อความเป็นสิริมงคล</div>
       <div class="share-buttons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
-        <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fthaipray.com%2Fprayers%2F${p.slug}.html" target="_blank" rel="noopener noreferrer" class="btn-share btn-share-line" aria-label="แชร์ทาง LINE" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background-color: #06c755; color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <a href="https://social-plugins.line.me/lineit/share?url=https%3A%2F%2Fthaipray.com%2Fprayers%2F${p.slug}" target="_blank" rel="noopener noreferrer" class="btn-share btn-share-line" aria-label="แชร์ทาง LINE" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background-color: #06c755; color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
           <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor; display: block;"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/></svg>
           <span>แชร์ LINE</span>
         </a>
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthaipray.com%2Fprayers%2F${p.slug}.html" target="_blank" rel="noopener noreferrer" class="btn-share btn-share-fb" aria-label="แชร์ Facebook" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background-color: #1877f2; color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthaipray.com%2Fprayers%2F${p.slug}" target="_blank" rel="noopener noreferrer" class="btn-share btn-share-fb" aria-label="แชร์ Facebook" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background-color: #1877f2; color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
           <svg viewBox="0 0 24 24" style="width: 18px; height: 18px; fill: currentColor; display: block;"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
           <span>แชร์ Facebook</span>
         </a>
-        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fthaipray.com%2Fprayers%2F${p.slug}.html&text=${encodeURIComponent(p.title + ' | ThaiPray')}" target="_blank" rel="noopener noreferrer" class="btn-share btn-share-x" aria-label="โพสต์ X" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background-color: #0f1419; color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fthaipray.com%2Fprayers%2F${p.slug}&text=${encodeURIComponent(p.title + ' | ThaiPray')}" target="_blank" rel="noopener noreferrer" class="btn-share btn-share-x" aria-label="โพสต์ X" style="display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.7rem 1.25rem; border-radius: 9999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; cursor: pointer; border: none; background-color: #0f1419; color: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
           <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor; display: block;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           <span>โพสต์ X</span>
         </a>
@@ -2097,7 +2097,7 @@ function generatePrayerHtml(p) {
     <section class="related-prayers-section">
       <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem;">
         <h2 style="font-size: 1.25rem; font-weight: 700; margin: 0;">✨ บทสวดมนต์แนะนำให้สวดต่อเนื่อง</h2>
-        <a href="../index.html#popular-prayers" style="font-size: 0.9rem; color: var(--primary-gold); text-decoration: none; font-weight: 600;">ดูบทสวดทั้งหมด →</a>
+        <a href="../#popular-prayers" style="font-size: 0.9rem; color: var(--primary-gold); text-decoration: none; font-weight: 600;">ดูบทสวดทั้งหมด →</a>
       </div>
       <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">เพิ่มพูนสิริมงคล เสริมบารมีรอบด้านด้วยบทสวดในหมวดหมู่เดียวกัน</p>
       <div class="related-prayers-grid">
