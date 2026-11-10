@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initSearchAndTabs();
   initFAQ();
   initMeditationTimer();
-  initShareButtons();
   initBackToTop();
   initStickySearch();
   initFavorites();
@@ -35,23 +34,27 @@ function updateThemeIcon(btn, theme) {
   btn.setAttribute('aria-label', theme === 'dark' ? 'เปลี่ยนเป็นโหมดสว่าง' : 'เปลี่ยนเป็นโหมดกลางคืน');
 }
 
-// 2. Font Resizer for Prayer Texts
+// 2. Font Resizer for Prayer Texts & Homepage
 function initFontResizer() {
-  const prayerBox = document.querySelector('.prayer-content');
-  if (!prayerBox) return;
-
+  const prayerBoxes = document.querySelectorAll('.prayer-content');
+  const homeTexts = document.querySelectorAll('.grid-cards .card p, .faq-answer');
   const btnIncrease = document.getElementById('font-increase');
   const btnDecrease = document.getElementById('font-decrease');
   const btnReset = document.getElementById('font-reset');
 
+  if (!prayerBoxes.length && !btnIncrease && !btnDecrease && !btnReset) return;
+
   let currentSize = parseFloat(localStorage.getItem('thaipray_fontsize')) || 1.3;
-  applyFontSize(prayerBox, currentSize);
+  applyFontSize(prayerBoxes, homeTexts, currentSize);
 
   if (btnIncrease) {
     btnIncrease.addEventListener('click', () => {
       if (currentSize < 2.2) {
-        currentSize += 0.15;
-        applyFontSize(prayerBox, currentSize);
+        currentSize = Math.round((currentSize + 0.15) * 100) / 100;
+        applyFontSize(prayerBoxes, homeTexts, currentSize);
+        if (!prayerBoxes.length) {
+          showToast(`ขยายขนาดตัวอักษรแล้ว (ใช้กับทุกหน้าบทสวดมนต์)`);
+        }
       }
     });
   }
@@ -59,8 +62,11 @@ function initFontResizer() {
   if (btnDecrease) {
     btnDecrease.addEventListener('click', () => {
       if (currentSize > 1.0) {
-        currentSize -= 0.15;
-        applyFontSize(prayerBox, currentSize);
+        currentSize = Math.round((currentSize - 0.15) * 100) / 100;
+        applyFontSize(prayerBoxes, homeTexts, currentSize);
+        if (!prayerBoxes.length) {
+          showToast(`ลดขนาดตัวอักษรแล้ว (ใช้กับทุกหน้าบทสวดมนต์)`);
+        }
       }
     });
   }
@@ -68,13 +74,22 @@ function initFontResizer() {
   if (btnReset) {
     btnReset.addEventListener('click', () => {
       currentSize = 1.3;
-      applyFontSize(prayerBox, currentSize);
+      applyFontSize(prayerBoxes, homeTexts, currentSize);
+      if (!prayerBoxes.length) {
+        showToast(`รีเซ็ตขนาดตัวอักษรเป็นขนาดมาตรฐาน`);
+      }
     });
   }
 }
 
-function applyFontSize(el, size) {
-  el.style.fontSize = `${size}rem`;
+function applyFontSize(prayerBoxes, homeTexts, size) {
+  prayerBoxes.forEach(el => {
+    el.style.fontSize = `${size}rem`;
+  });
+  const scale = size / 1.3;
+  homeTexts.forEach(el => {
+    el.style.fontSize = `${Math.round(0.95 * scale * 100) / 100}rem`;
+  });
   localStorage.setItem('thaipray_fontsize', size);
 }
 
@@ -159,6 +174,14 @@ function initSearchAndTabs() {
 
   if (searchInput) {
     searchInput.addEventListener('input', filterCards);
+
+    // Support ?q= query parameter from URL (JSON-LD SearchAction)
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryParam = urlParams.get('q');
+    if (queryParam && queryParam.trim()) {
+      searchInput.value = queryParam.trim();
+      filterCards();
+    }
   }
 
   tabBtns.forEach(btn => {

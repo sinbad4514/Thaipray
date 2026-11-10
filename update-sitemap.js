@@ -26,8 +26,14 @@ prayerFiles.sort().forEach(file => {
 `;
 });
 
-sitemap += `</urlset>
+sitemap += `  <url>
+    <loc>https://thaipray.com/prayer-sequence</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+</urlset>
 `;
 
 fs.writeFileSync(path.join(__dirname, 'sitemap.xml'), sitemap, 'utf-8');
-console.log(`Updated Sitemap with all ${prayerFiles.length + 1} pages automatically!`);
+console.log(`Updated Sitemap with all ${prayerFiles.length + 2} pages automatically!`);

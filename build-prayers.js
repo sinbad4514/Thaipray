@@ -1825,6 +1825,11 @@ function generatePrayerHtml(p) {
   <meta property="og:title" content="${p.title} | ThaiPray">
   <meta property="og:description" content="${p.desc}">
   <meta property="og:url" content="https://thaipray.com/prayers/${p.slug}">
+  <meta property="og:image" content="https://thaipray.com/assets/images/og-cover.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://thaipray.com/assets/images/og-cover.jpg">
   
   <link rel="stylesheet" href="../styles.css?v=20260828">
 
@@ -1880,6 +1885,22 @@ function generatePrayerHtml(p) {
 </head>
 <body>
 
+  <!-- [ TOP ANNOUNCEMENT BAR ] -->
+  <div class="top-ad-announcement">
+    <div class="top-ad-content">
+      <div>
+        <span class="top-ad-badge">📢 ประชาสัมพันธ์</span>
+        <span class="top-ad-text">พื้นที่ลงโฆษณาแบนเนอร์ ประชาสัมพันธ์วัตถุมงคล & สินค้าสายมูบน ThaiPray</span>
+      </div>
+      <div>
+        <a href="https://line.me/ti/p/~@johnwick" target="_blank" rel="noopener noreferrer" class="top-ad-btn" title="ติดต่อลงโฆษณาทาง LINE">
+          <svg viewBox="0 0 24 24" style="width: 14px; height: 14px; fill: currentColor;"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/></svg>
+          <span>ลงโฆษณา LINE: @johnwick</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container nav-container">
       <a href="../" class="logo">
@@ -1912,6 +1933,13 @@ function generatePrayerHtml(p) {
       <h1>${p.title}</h1>
       <p style="color: var(--text-secondary);">${p.desc}</p>
     </section>
+
+    <!-- Top Graphic Banner Ad -->
+    <div style="margin: 1.25rem 0;">
+      <a href="https://line.me/ti/p/~@johnwick" target="_blank" rel="noopener noreferrer" class="ad-banner-card" title="คลิกติดต่อลงโฆษณา LINE: @johnwick">
+        <img src="../assets/images/banner-advertise-johnwick.jpg" alt="ลงโฆษณาติดต่อที่นี่ พื้นที่โฆษณา ประชาสัมพันธ์ แบนเนอร์เว็บไซต์ ThaiPray LINE ID: @johnwick" class="ad-banner-img" loading="eager">
+      </a>
+    </div>
 
     <!-- Prayer Box -->
     <section class="prayer-box">
@@ -2007,6 +2035,23 @@ function generatePrayerHtml(p) {
       </div>
     </section>
 
+    <!-- ADVERTISING BANNER (พื้นที่ลงโฆษณา LINE: @johnwick) -->
+    <section class="ad-banner-section" style="margin-top: 1.5rem;">
+      <div class="ad-native-box">
+        <div class="ad-native-content">
+          <span class="ad-native-badge">📢 ประชาสัมพันธ์ & ลงโฆษณา</span>
+          <h3 style="font-size: 1.15rem;">✨ สนใจลงโฆษณาแบนเนอร์บนหน้าบทสวดมนต์ ThaiPray</h3>
+          <p style="font-size: 0.88rem;">เข้าถึงผู้ใช้งานสายบุญและผู้สวดมนต์เป็นประจำทุกวันทั่วประเทศ ติดต่อสอบถามอัตราค่าบริการ</p>
+        </div>
+        <div class="ad-native-action">
+          <a href="https://line.me/ti/p/~@johnwick" target="_blank" rel="noopener noreferrer" class="ad-native-btn" style="font-size: 0.95rem; padding: 0.65rem 1.25rem;">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill: currentColor;"><path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.121.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992z"/></svg>
+            <span>LINE: @johnwick</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -2017,7 +2062,7 @@ function generatePrayerHtml(p) {
     </div>
   </footer>
 
-  <script src="../app.js?v=20260828"></script>
+  <script src="../app.js?v=20261110"></script>
 </body>
 </html>`;
 }
